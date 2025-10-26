@@ -1056,3 +1056,1130 @@ Backtrace:
 [[SV] Summary Screen] [DBK] Terastallization.rb:10:in `drawPage'
 [[SV] Summary Screen] [MUI] Enhanced Pokemon UI.rb:11:in `drawPage'
 [[SV] Summary Screen] [002] Summary Rewrites.rb:1217:in `block in pbScene'
+
+=================
+
+[2025-10-24 17:55:20 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: NoMethodError
+Message: undefined method `outdoor_map' for nil:NilClass
+
+Backtrace:
+[Dynamic Lighting System] [002] Lighting_Core.rb:302:in `outside?'
+[Dynamic Lighting System] [002] Lighting_Core.rb:62:in `setup_effects'
+[Dynamic Lighting System] [002] Lighting_Core.rb:32:in `initialize'
+[Dynamic Lighting System] [003] Scene_Integration.rb:11:in `new'
+[Dynamic Lighting System] [003] Scene_Integration.rb:11:in `createSpritesets'
+032:Scene_Map:233:in `main'
+401:Main:35:in `mainFunctionDebug'
+401:Main:18:in `block in mainFunction'
+014:Errors:80:in `pbCriticalCode'
+401:Main:18:in `mainFunction'
+
+=================
+
+[2025-10-24 17:55:48 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: NoMethodError
+Message: undefined method `outdoor_map' for nil:NilClass
+
+Backtrace:
+[Dynamic Lighting System] [002] Lighting_Core.rb:302:in `outside?'
+[Dynamic Lighting System] [002] Lighting_Core.rb:62:in `setup_effects'
+[Dynamic Lighting System] [002] Lighting_Core.rb:32:in `initialize'
+[Dynamic Lighting System] [003] Scene_Integration.rb:11:in `new'
+[Dynamic Lighting System] [003] Scene_Integration.rb:11:in `createSpritesets'
+032:Scene_Map:233:in `main'
+401:Main:35:in `mainFunctionDebug'
+401:Main:18:in `block in mainFunction'
+014:Errors:80:in `pbCriticalCode'
+401:Main:18:in `mainFunction'
+
+=================
+
+[2025-10-24 17:58:18 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: ArgumentError
+Message: wrong number of arguments (given 1, expected 2)
+
+Backtrace:
+[Map Metadata System] [000] Base Classes.rb:16:in `initialize'
+[[DBK] SOS Battles] [002] Game Data.rb:83:in `initialize'
+100:GameData:159:in `new'
+100:GameData:159:in `register'
+396:Compiler_CompilePBS:60:in `block (3 levels) in compile_PBS_file_generic'
+395:Compiler:143:in `block in pbEachFileSection'
+395:Compiler:108:in `block in pbEachFileSectionEx'
+395:Compiler:100:in `each_line'
+395:Compiler:100:in `pbEachFileSectionEx'
+395:Compiler:142:in `pbEachFileSection'
+
+=================
+
+[2025-10-24 17:58:22 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: RuntimeError
+Message: Unknown exception when compiling.
+
+Backtrace:
+395:Compiler:1104:in `rescue in main'
+395:Compiler:1031:in `main'
+401:Main:29:in `mainFunctionDebug'
+401:Main:18:in `block in mainFunction'
+014:Errors:80:in `pbCriticalCode'
+401:Main:18:in `mainFunction'
+401:Main:45:in `block in <main>'
+401:Main:44:in `loop'
+401:Main:44:in `<main>'
+-e:in `eval'
+
+=================
+
+[2025-10-24 19:13:41 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Error in Plugin: [PBS Data System]
+Exception: SyntaxError
+Message: [PBS Data System] [003] Hooks.rb:171: syntax error, unexpected `end', expecting end-of-input
+      end
+      ^~~
+
+
+Backtrace:
+008:PluginManager:635:in `eval'
+008:PluginManager:635:in `block (2 levels) in runPlugins'
+008:PluginManager:625:in `each'
+008:PluginManager:625:in `block in runPlugins'
+008:PluginManager:616:in `each'
+008:PluginManager:616:in `runPlugins'
+401:Main:28:in `mainFunctionDebug'
+401:Main:18:in `block in mainFunction'
+014:Errors:80:in `pbCriticalCode'
+401:Main:18:in `mainFunction'
+
+=================
+
+[2025-10-24 19:20:10 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Error in Plugin: [Challenge Modes]
+Exception: NameError
+Message: undefined method `get_trainer' for class `#<Class:GameData::MapTrainer>'
+
+Backtrace:
+[Challenge Modes] 013_Trainer_Scaling.rb:191:in `singleton class'
+[Challenge Modes] 013_Trainer_Scaling.rb:190:in `<class:MapTrainer>'
+[Challenge Modes] 013_Trainer_Scaling.rb:188:in `<module:GameData>'
+[Challenge Modes] 013_Trainer_Scaling.rb:187:in `<main>'
+008:PluginManager:635:in `eval'
+008:PluginManager:635:in `block (2 levels) in runPlugins'
+008:PluginManager:625:in `each'
+008:PluginManager:625:in `block in runPlugins'
+008:PluginManager:616:in `each'
+008:PluginManager:616:in `runPlugins'
+
+=================
+
+[2025-10-24 19:29:19 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Script error in event 15 (coords 16,8), map 2 (Lappet Town)
+Exception: NameError
+Message: uninitialized constant GameData::MapTrainer
+
+***Full script:
+GameData::MapTrainer.notice(self)
+
+Backtrace:
+(eval):1:in `execute_script'
+033:Interpreter:138:in `eval'
+033:Interpreter:138:in `execute_script'
+034:Interpreter_Commands:1177:in `command_355'
+034:Interpreter_Commands:116:in `execute_command'
+033:Interpreter:130:in `block in update'
+033:Interpreter:86:in `loop'
+033:Interpreter:86:in `update'
+[Advanced Items - Field Moves] 10_Overwrites.rb:34:in `block in update'
+[Advanced Items - Field Moves] 10_Overwrites.rb:33:in `loop'
+
+=================
+
+[2025-10-24 19:33:47 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Script error in event 15 (coords 16,8), map 2 (Lappet Town)
+Exception: NoMethodError
+Message: undefined method `id' for #<Interpreter @event_id: 15>
+
+***Full script:
+GameData::MapTrainer.notice(self)
+
+Backtrace:
+[PBS Data System] [007] MapTrainer System.rb:49:in `notice'
+(eval):1:in `execute_script'
+033:Interpreter:138:in `eval'
+033:Interpreter:138:in `execute_script'
+034:Interpreter_Commands:1177:in `command_355'
+034:Interpreter_Commands:116:in `execute_command'
+033:Interpreter:130:in `block in update'
+033:Interpreter:86:in `loop'
+033:Interpreter:86:in `update'
+[Advanced Items - Field Moves] 10_Overwrites.rb:34:in `block in update'
+
+=================
+
+[2025-10-24 19:52:57 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Script error in event 7 (coords 5,2), map 2 (Lappet Town)
+Exception: NameError
+Message: uninitialized constant Interpreter::FollowingPkmn
+
+***Full script:
+FollowingPkmn.start_following(5)
+
+Backtrace:
+(eval):1:in `execute_script'
+033:Interpreter:138:in `eval'
+033:Interpreter:138:in `execute_script'
+034:Interpreter_Commands:1177:in `command_355'
+034:Interpreter_Commands:116:in `execute_command'
+033:Interpreter:130:in `block in update'
+033:Interpreter:86:in `loop'
+033:Interpreter:86:in `update'
+[Advanced Items - Field Moves] 10_Overwrites.rb:34:in `block in update'
+[Advanced Items - Field Moves] 10_Overwrites.rb:33:in `loop'
+
+=================
+
+[2025-10-24 19:54:21 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Script error in event 9 (coords 10,2), map 2 (Lappet Town)
+Exception: NoMethodError
+Message: undefined method `begin_randomizer_early' for ChallengeModes:Module
+
+***Full script:
+ChallengeModes.begin_randomizer_early
+
+Backtrace:
+(eval):1:in `execute_script'
+033:Interpreter:138:in `eval'
+033:Interpreter:138:in `execute_script'
+034:Interpreter_Commands:1177:in `command_355'
+034:Interpreter_Commands:116:in `execute_command'
+033:Interpreter:130:in `block in update'
+033:Interpreter:86:in `loop'
+033:Interpreter:86:in `update'
+[Advanced Items - Field Moves] 10_Overwrites.rb:34:in `block in update'
+[Advanced Items - Field Moves] 10_Overwrites.rb:33:in `loop'
+
+=================
+
+[2025-10-24 20:19:23 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Error in Plugin: [PBS Data System]
+Exception: NameError
+Message: undefined method `pbTrainerBattle' for class `Object'
+
+Backtrace:
+[PBS Data System] [008] Auto MapTrainer.rb:24:in `<main>'
+008:PluginManager:635:in `eval'
+008:PluginManager:635:in `block (2 levels) in runPlugins'
+008:PluginManager:625:in `each'
+008:PluginManager:625:in `block in runPlugins'
+008:PluginManager:616:in `each'
+008:PluginManager:616:in `runPlugins'
+401:Main:28:in `mainFunctionDebug'
+401:Main:18:in `block in mainFunction'
+014:Errors:80:in `pbCriticalCode'
+
+=================
+
+[2025-10-24 20:25:34 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Script error in event 15 (coords 16,8), map 2 (Lappet Town)
+Exception: SystemStackError
+Message: stack level too deep
+
+***Full script:
+GameData::MapTrainer.notice(self)
+
+Backtrace:
+006:Intl_Messages:751:in `getFromHash'
+006:Intl_Messages:774:in `_INTL'
+016:Deprecation:11:in `warn_method'
+019:FileTests:85:in `safeExists?'
+[PBS Data System] [007] MapTrainer System.rb:167:in `load_all'
+[PBS Data System] [007] MapTrainer System.rb:20:in `ensure_loaded'
+[PBS Data System] [007] MapTrainer System.rb:122:in `all'
+[PBS Data System] [007] MapTrainer System.rb:190:in `load_all'
+[PBS Data System] [007] MapTrainer System.rb:20:in `ensure_loaded'
+[PBS Data System] [007] MapTrainer System.rb:122:in `all'
+
+=================
+
+[2025-10-24 20:53:47 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Script error in event 15 (coords 16,8), map 2 (Lappet Town)
+Exception: NoMethodError
+Message: undefined method `pbTrainerBattle' for GameData::MapTrainer:Class
+
+***Full script:
+GameData::MapTrainer.notice(self)
+
+Backtrace:
+[PBS Data System] [007] MapTrainer System.rb:110:in `start_battle'
+[PBS Data System] [007] MapTrainer System.rb:81:in `notice'
+(eval):1:in `execute_script'
+033:Interpreter:138:in `eval'
+033:Interpreter:138:in `execute_script'
+034:Interpreter_Commands:1177:in `command_355'
+034:Interpreter_Commands:116:in `execute_command'
+033:Interpreter:130:in `block in update'
+033:Interpreter:86:in `loop'
+033:Interpreter:86:in `update'
+
+=================
+
+[2025-10-24 20:55:28 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Script error in event 15 (coords 16,8), map 2 (Lappet Town)
+Exception: NoMethodError
+Message: undefined method `pbTrainerBattle' for #<Interpreter @event_id: 15>
+
+***Full script:
+GameData::MapTrainer.notice(self)
+
+Backtrace:
+[PBS Data System] [007] MapTrainer System.rb:110:in `start_battle'
+[PBS Data System] [007] MapTrainer System.rb:81:in `notice'
+(eval):1:in `execute_script'
+033:Interpreter:138:in `eval'
+033:Interpreter:138:in `execute_script'
+034:Interpreter_Commands:1177:in `command_355'
+034:Interpreter_Commands:116:in `execute_command'
+033:Interpreter:130:in `block in update'
+033:Interpreter:86:in `loop'
+033:Interpreter:86:in `update'
+
+=================
+
+[2025-10-24 20:58:32 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Script error in event 15 (coords 16,8), map 2 (Lappet Town)
+Exception: RuntimeError
+Message: Error: def pbGetOwnerIndexFromBattlerIndex gives invalid owner index (0 for battle type 1v1, trainers 1v0)
+
+***Full script:
+GameData::MapTrainer.notice(self)
+
+Backtrace:
+148:Battle_StartAndEnd:58:in `block (2 levels) in pbEnsureParticipants'
+148:Battle_StartAndEnd:46:in `times'
+148:Battle_StartAndEnd:46:in `block in pbEnsureParticipants'
+148:Battle_StartAndEnd:44:in `loop'
+148:Battle_StartAndEnd:44:in `pbEnsureParticipants'
+148:Battle_StartAndEnd:267:in `pbStartBattle'
+[Raid Battles Hotfixes] [010] Raid Counter Reset Fix.rb:52:in `pbStartBattle'
+256:Overworld_BattleStarting:521:in `block (2 levels) in start_core'
+257:Overworld_BattleIntroAnim:55:in `pbSceneStandby'
+256:Overworld_BattleStarting:521:in `block in start_core'
+
+=================
+
+[2025-10-24 21:05:40 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Error in Plugin: [RMXP Event Importer]
+Exception: NameError
+Message: undefined method `parse_event_page' for class `#<Class:EventImporter>'
+
+Backtrace:
+[RMXP Event Importer] 003_MapTrainer_Integration.rb:106:in `singleton class'
+[RMXP Event Importer] 003_MapTrainer_Integration.rb:104:in `<module:EventImporter>'
+[RMXP Event Importer] 003_MapTrainer_Integration.rb:103:in `<main>'
+008:PluginManager:635:in `eval'
+008:PluginManager:635:in `block (2 levels) in runPlugins'
+008:PluginManager:625:in `each'
+008:PluginManager:625:in `block in runPlugins'
+008:PluginManager:616:in `each'
+008:PluginManager:616:in `runPlugins'
+401:Main:28:in `mainFunctionDebug'
+
+=================
+
+[2025-10-24 21:11:28 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: NoMethodError
+Message: undefined method `map_id' for #<RPG::Map>
+
+Backtrace:
+[RMXP Event Importer] 001_Event_Importer.rb:1566:in `add_event_to_map'
+[RMXP Event Importer] 001_Event_Importer.rb:182:in `block (3 levels) in import_events_for_map'
+[RMXP Event Importer] 001_Event_Importer.rb:162:in `each_line'
+[RMXP Event Importer] 001_Event_Importer.rb:162:in `block (2 levels) in import_events_for_map'
+[RMXP Event Importer] 001_Event_Importer.rb:159:in `open'
+[RMXP Event Importer] 001_Event_Importer.rb:159:in `block in import_events_for_map'
+[RMXP Event Importer] 001_Event_Importer.rb:156:in `each'
+[RMXP Event Importer] 001_Event_Importer.rb:156:in `import_events_for_map'
+[RMXP Event Importer] 001_Event_Importer.rb:1711:in `block in <main>'
+036:Event_HandlerCollections:121:in `call'
+
+=================
+
+[2025-10-24 21:32:06 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: NoMethodError
+Message: undefined method `size' for #<Game_SelfSwitches>
+
+Backtrace:
+[RMXP Event Importer] 001_Event_Importer.rb:1844:in `block in <main>'
+036:Event_HandlerCollections:121:in `call'
+385:Debug_Menus:138:in `block in pbDebugMenu'
+385:Debug_Menus:100:in `loop'
+385:Debug_Menus:100:in `pbDebugMenu'
+[Challenge Modes] 005_Capture Rules.rb:215:in `pbDebugMenu'
+032:Scene_Map:118:in `block in call_debug'
+079:MessageConfig:575:in `pbFadeOutIn'
+032:Scene_Map:118:in `call_debug'
+[Advanced Items - Field Moves] 10_Overwrites.rb:76:in `update'
+
+=================
+
+[2025-10-24 21:34:01 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: NoMethodError
+Message: undefined method `each_key' for #<Game_SelfSwitches>
+
+Backtrace:
+[RMXP Event Importer] 001_Event_Importer.rb:1846:in `block in <main>'
+036:Event_HandlerCollections:121:in `call'
+385:Debug_Menus:138:in `block in pbDebugMenu'
+385:Debug_Menus:100:in `loop'
+385:Debug_Menus:100:in `pbDebugMenu'
+[Challenge Modes] 005_Capture Rules.rb:215:in `pbDebugMenu'
+032:Scene_Map:118:in `block in call_debug'
+079:MessageConfig:575:in `pbFadeOutIn'
+032:Scene_Map:118:in `call_debug'
+[Advanced Items - Field Moves] 10_Overwrites.rb:76:in `update'
+
+=================
+
+[2025-10-24 21:35:30 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: NoMethodError
+Message: undefined method `each_key' for #<Game_SelfSwitches>
+
+Backtrace:
+[RMXP Event Importer] 001_Event_Importer.rb:1846:in `block in <main>'
+036:Event_HandlerCollections:121:in `call'
+385:Debug_Menus:138:in `block in pbDebugMenu'
+385:Debug_Menus:100:in `loop'
+385:Debug_Menus:100:in `pbDebugMenu'
+[Challenge Modes] 005_Capture Rules.rb:215:in `pbDebugMenu'
+032:Scene_Map:118:in `block in call_debug'
+079:MessageConfig:575:in `pbFadeOutIn'
+032:Scene_Map:118:in `call_debug'
+[Advanced Items - Field Moves] 10_Overwrites.rb:76:in `update'
+
+=================
+
+[2025-10-24 21:49:39 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Error in Plugin: [RMXP Event Importer]
+Exception: SyntaxError
+Message: [RMXP Event Importer] 001_Event_Importer.rb:396: syntax error, unexpected `when', expecting `end'
+      when /^CHOICE\s*[:=]\s*(.+)/i
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:404: syntax error, unexpected `when', expecting `end'
+      when /^CONDITIONAL\s*[:=]\s*(.+)/i
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:407: syntax error, unexpected `when', expecting `end'
+      when /^WAIT\s*[:=]\s*(\d+)/i
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:411: syntax error, unexpected `when', expecting `end'
+      when /^PLAY_SE\s*[:=]\s*(.+)/i
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:415: syntax error, unexpected `when', expecting `end'
+      when /^PLAY_BGM\s*[:=]\s*(.+)/i
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:419: syntax error, unexpected `when', expecting `end'
+      when /^PLAY_ME\s*[:=]\s*(.+)/i
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:423: syntax error, unexpected `when', expecting `end'
+      when /^FADEOUT_BGM\s*[:=]\s*(\d+)...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:426: syntax error, unexpected `when', expecting `end'
+      when /^FADEOUT_BGS\s*[:=]\s*(\d+)...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:429: syntax error, unexpected `when', expecting `end'
+      when /^SHOW_PICTURE\s*[:=]\s*(\d+...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:438: syntax error, unexpected `when', expecting `end'
+      when /^MOVE_PICTURE\s*[:=]\s*(\d+...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:443: syntax error, unexpected `when', expecting `end'
+      when /^ERASE_PICTURE\s*[:=]\s*(\d...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:446: syntax error, unexpected `when', expecting `end'
+      when /^LABEL\s*[:=]\s*(.+)/i
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:449: syntax error, unexpected `when', expecting `end'
+      when /^JUMP_TO_LABEL\s*[:=]\s*(.+...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:452: syntax error, unexpected `when', expecting `end'
+      when /^LOOP_START/i
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:455: syntax error, unexpected `when', expecting `end'
+      when /^LOOP_END/i
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:458: syntax error, unexpected `when', expecting `end'
+      when /^BREAK_LOOP/i
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:461: syntax error, unexpected `when', expecting `end'
+      when /^EXIT_EVENT/i
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:464: syntax error, unexpected `when', expecting `end'
+      when /^ERASE_EVENT/i
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:467: syntax error, unexpected `when', expecting `end'
+      when /^CALL_COMMON_EVENT\s*[:=]\s...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:470: syntax error, unexpected `when', expecting `end'
+      when /^MONEY\s*[:=]\s*([+-]?\d+)/i
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:475: syntax error, unexpected `when', expecting `end'
+      when /^CHANGE_GOLD\s*[:=]\s*([+-]...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:479: syntax error, unexpected `when', expecting `end'
+      when /^CHANGE_ITEMS\s*[:=]\s*(.+?...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:484: syntax error, unexpected `when', expecting `end'
+      when /^CHANGE_PARTY\s*[:=]\s*(.+?...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:488: syntax error, unexpected `when', expecting `end'
+      when /^CHANGE_WEAPONS\s*[:=]\s*(....
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:493: syntax error, unexpected `when', expecting `end'
+      when /^CHANGE_ARMOR\s*[:=]\s*(.+?...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:498: syntax error, unexpected `when', expecting `end'
+      when /^CHANGE_HP\s*[:=]\s*(\d+)\s...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:505: syntax error, unexpected `when', expecting `end'
+      when /^CHANGE_SP\s*[:=]\s*(\d+)\s...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:510: syntax error, unexpected `when', expecting `end'
+      when /^CHANGE_STATE\s*[:=]\s*(\d+...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:515: syntax error, unexpected `when', expecting `end'
+      when /^CHANGE_LEVEL\s*[:=]\s*(\d+...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:520: syntax error, unexpected `when', expecting `end'
+      when /^CHANGE_SKILLS\s*[:=]\s*(\d...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:525: syntax error, unexpected `when', expecting `end'
+      when /^CHANGE_EXP\s*[:=]\s*(\d+)\...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:530: syntax error, unexpected `when', expecting `end'
+      when /^CHANGE_EQUIPMENT\s*[:=]\s*...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:535: syntax error, unexpected `when', expecting `end'
+      when /^CHANGE_ACTOR_NAME\s*[:=]\s...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:539: syntax error, unexpected `when', expecting `end'
+      when /^CHANGE_ACTOR_CLASS\s*[:=]\...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:543: syntax error, unexpected `when', expecting `end'
+      when /^CHANGE_ACTOR_GRAPHIC\s*[:=...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:550: syntax error, unexpected `when', expecting `end'
+      when /^CHANGE_ENEMY_HP\s*[:=]\s*(...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:556: syntax error, unexpected `when', expecting `end'
+      when /^CHANGE_ENEMY_SP\s*[:=]\s*(...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:561: syntax error, unexpected `when', expecting `end'
+      when /^CHANGE_ENEMY_STATE\s*[:=]\...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:566: syntax error, unexpected `when', expecting `end'
+      when /^ENEMY_APPEAR\s*[:=]\s*(\d+...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:569: syntax error, unexpected `when', expecting `end'
+      when /^ENEMY_TRANSFORM\s*[:=]\s*(...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:573: syntax error, unexpected `when', expecting `end'
+      when /^SHOW_BATTLE_ANIMATION\s*[:...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:580: syntax error, unexpected `when', expecting `end'
+      when /^SHOW_ANIMATION\s*[:=]\s*(\...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:584: syntax error, unexpected `when', expecting `end'
+      when /^CHANGE_FOG\s*[:=]\s*(.+?)(...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:596: syntax error, unexpected `when', expecting `end'
+      when /^CHANGE_PANORAMA\s*[:=]\s*(...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:602: syntax error, unexpected `when', expecting `end'
+      when /^CHANGE_BATTLEBACK\s*[:=]\s...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:607: syntax error, unexpected `when', expecting `end'
+      when /^SET_WEATHER\s*[:=]\s*(\d+)...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:615: syntax error, unexpected `when', expecting `end'
+      when /^BATTLE_PROCESSING\s*[:=]\s...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:619: syntax error, unexpected `when', expecting `end'
+      when /^SHOP_PROCESSING\s*[:=]\s*(...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:648: syntax error, unexpected `when', expecting `end'
+      when /^NAME_INPUT\s*[:=]\s*(\d+)\...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:652: syntax error, unexpected `when', expecting `end'
+      when /^CHANGE_WINDOWSKIN\s*[:=]\s...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:655: syntax error, unexpected `when', expecting `end'
+      when /^CHANGE_BATTLE_BGM\s*[:=]\s...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:659: syntax error, unexpected `when', expecting `end'
+      when /^CHANGE_BATTLE_END_ME\s*[:=...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:663: syntax error, unexpected `when', expecting `end'
+      when /^STOP_SE/i
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:665: syntax error, unexpected `when', expecting `end'
+      when /^MEMORIZE_BGM/i
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:668: syntax error, unexpected `when', expecting `end'
+      when /^RESTORE_BGM/i
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:671: syntax error, unexpected `when', expecting `end'
+      when /^PLAY_BGS\s*[:=]\s*(.+)/i
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:675: syntax error, unexpected `when', expecting `end'
+      when /^FADEOUT_BGS\s*[:=]\s*(\d+)...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:678: syntax error, unexpected `when', expecting `end'
+      when /^RECOVER_ALL(?:\s*[:=]\s*(\...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:686: syntax error, unexpected `when', expecting `end'
+      when /^SET_EVENT_LOCATION\s*[:=]\...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:691: syntax error, unexpected `when', expecting `end'
+      when /^SCREEN_SHAKE\s*[:=]\s*(\d+...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:696: syntax error, unexpected `when', expecting `end'
+      when /^SCREEN_FLASH\s*[:=]\s*(\d+...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:704: syntax error, unexpected `when', expecting `end'
+      when /^CHANGE_TRANSPARENT\s*[:=]\...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:707: syntax error, unexpected `when', expecting `end'
+      when /^CHANGE_MENU_ACCESS\s*[:=]\...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:711: syntax error, unexpected `when', expecting `end'
+      when /^CHANGE_SAVE_ACCESS\s*[:=]\...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:715: syntax error, unexpected `when', expecting `end'
+      when /^CHANGE_ENCOUNTER\s*[:=]\s*...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:719: syntax error, unexpected `when', expecting `end'
+      when /^COMMENT\s*[:=]\s*(.+)/i
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:722: syntax error, unexpected `when', expecting `end'
+      when /^FADEOUT/i
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:726: syntax error, unexpected `when', expecting `end'
+      when /^FADEIN/i
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:731: syntax error, unexpected `when', expecting `end'
+      when /^WARP\s*[:=]\s*(.+)/i
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:734: syntax error, unexpected `when', expecting `end'
+      when /^TRANSFER\s*[:=]\s*(.+)/i
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:737: syntax error, unexpected `when', expecting `end'
+      when /^MOVE_ROUTE\s*[:=]\s*(.+)/i
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:740: syntax error, unexpected `when', expecting `end'
+      when /^SET_MOVE_ROUTE\s*[:=]\s*(....
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:743: syntax error, unexpected `when', expecting `end'
+      when /^WAIT_FOR_MOVE/i
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:747: syntax error, unexpected `when', expecting `end'
+      when /^CHANGE_SCREEN_TONE\s*[:=]\...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:750: syntax error, unexpected `when', expecting `end'
+      when /^NEW_PAGE/i
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:789: syntax error, unexpected `when', expecting `end'
+      when /^CONDITION_SWITCH\s*[:=]\s*...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:793: syntax error, unexpected `when', expecting `end'
+      when /^CONDITION_VARIABLE\s*[:=]\...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:797: syntax error, unexpected `when', expecting `end'
+      when /^CONDITION_SELF_SWITCH\s*[:...
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:800: syntax error, unexpected `else', expecting `end'
+      else
+      ^~~~
+[RMXP Event Importer] 001_Event_Importer.rb:890: Invalid return in class/module body
+    return event
+    ^~~~~~
+[RMXP Event Importer] 001_Event_Importer.rb:1724: syntax error, unexpected `end', expecting end-of-input
+
+Backtrace:
+008:PluginManager:635:in `eval'
+008:PluginManager:635:in `block (2 levels) in runPlugins'
+008:PluginManager:625:in `each'
+008:PluginManager:625:in `block in runPlugins'
+008:PluginManager:616:in `each'
+008:PluginManager:616:in `runPlugins'
+401:Main:28:in `mainFunctionDebug'
+401:Main:18:in `block in mainFunction'
+014:Errors:80:in `pbCriticalCode'
+401:Main:18:in `mainFunction'
+
+=================
+
+[2025-10-24 21:57:28 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: NoMethodError
+Message: undefined method `strip' for nil:NilClass
+
+Backtrace:
+[RMXP Event Importer] 001_Event_Importer.rb:372:in `parse_event_definition'
+[RMXP Event Importer] 001_Event_Importer.rb:188:in `block (3 levels) in import_events_for_map'
+[RMXP Event Importer] 001_Event_Importer.rb:170:in `each_line'
+[RMXP Event Importer] 001_Event_Importer.rb:170:in `block (2 levels) in import_events_for_map'
+[RMXP Event Importer] 001_Event_Importer.rb:167:in `open'
+[RMXP Event Importer] 001_Event_Importer.rb:167:in `block in import_events_for_map'
+[RMXP Event Importer] 001_Event_Importer.rb:164:in `each'
+[RMXP Event Importer] 001_Event_Importer.rb:164:in `import_events_for_map'
+[RMXP Event Importer] 001_Event_Importer.rb:1749:in `block in <main>'
+036:Event_HandlerCollections:121:in `call'
+
+=================
+
+[2025-10-24 21:57:57 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: NoMethodError
+Message: undefined method `strip' for nil:NilClass
+
+Backtrace:
+[RMXP Event Importer] 001_Event_Importer.rb:372:in `parse_event_definition'
+[RMXP Event Importer] 001_Event_Importer.rb:188:in `block (3 levels) in import_events_for_map'
+[RMXP Event Importer] 001_Event_Importer.rb:170:in `each_line'
+[RMXP Event Importer] 001_Event_Importer.rb:170:in `block (2 levels) in import_events_for_map'
+[RMXP Event Importer] 001_Event_Importer.rb:167:in `open'
+[RMXP Event Importer] 001_Event_Importer.rb:167:in `block in import_events_for_map'
+[RMXP Event Importer] 001_Event_Importer.rb:164:in `each'
+[RMXP Event Importer] 001_Event_Importer.rb:164:in `import_events_for_map'
+[RMXP Event Importer] 001_Event_Importer.rb:1749:in `block in <main>'
+036:Event_HandlerCollections:121:in `call'
+
+=================
+
+[2025-10-24 21:58:55 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Script error in event 1 (coords 16,8), map 2 (Lappet Town)
+Exception: NoMethodError
+Message: undefined method `item_id' for {:species=>:RATTATA, :level=>5}:Hash
+
+***Full script:
+GameData::MapTrainer.notice(self)
+
+Backtrace:
+147:Battle:153:in `block in initialize'
+147:Battle:153:in `initialize'
+147:Battle:153:in `new'
+147:Battle:153:in `initialize'
+[Generation 9 Pack] [001] Battle.rb:19:in `initialize'
+[Generation 9 Pack] [005] Restore Consumable Item.rb:12:in `initialize'
+[Deluxe Battle Kit] [003] Deluxe Battle Rules.rb:399:in `initialize'
+[Deluxe Battle Kit] [001] Midbattle Overwrites.rb:17:in `initialize'
+[[DBK] Dynamax] [007] Dynamax Mechanics.rb:187:in `initialize'
+[[DBK] Terastallization] [006] Battle.rb:13:in `initialize'
+
+=================
+
+[2025-10-24 22:00:20 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Script error in event 1 (coords 16,8), map 2 (Lappet Town)
+Exception: NoMethodError
+Message: undefined method `item_id' for {:species=>:RATTATA, :level=>5}:Hash
+
+***Full script:
+GameData::MapTrainer.notice(self)
+
+Backtrace:
+147:Battle:153:in `block in initialize'
+147:Battle:153:in `initialize'
+147:Battle:153:in `new'
+147:Battle:153:in `initialize'
+[Generation 9 Pack] [001] Battle.rb:19:in `initialize'
+[Generation 9 Pack] [005] Restore Consumable Item.rb:12:in `initialize'
+[Deluxe Battle Kit] [003] Deluxe Battle Rules.rb:399:in `initialize'
+[Deluxe Battle Kit] [001] Midbattle Overwrites.rb:17:in `initialize'
+[[DBK] Dynamax] [007] Dynamax Mechanics.rb:187:in `initialize'
+[[DBK] Terastallization] [006] Battle.rb:13:in `initialize'
+
+=================
+
+[2025-10-24 22:04:31 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Script error in event 1 (coords 16,8), map 2 (Lappet Town)
+Exception: NoMethodError
+Message: undefined method `item_id' for {:species=>:RATTATA, :level=>5}:Hash
+
+***Full script:
+GameData::MapTrainer.notice(self)
+
+Backtrace:
+147:Battle:153:in `block in initialize'
+147:Battle:153:in `initialize'
+147:Battle:153:in `new'
+147:Battle:153:in `initialize'
+[Generation 9 Pack] [001] Battle.rb:19:in `initialize'
+[Generation 9 Pack] [005] Restore Consumable Item.rb:12:in `initialize'
+[Deluxe Battle Kit] [003] Deluxe Battle Rules.rb:399:in `initialize'
+[Deluxe Battle Kit] [001] Midbattle Overwrites.rb:17:in `initialize'
+[[DBK] Dynamax] [007] Dynamax Mechanics.rb:187:in `initialize'
+[[DBK] Terastallization] [006] Battle.rb:13:in `initialize'
+
+=================
+
+[2025-10-24 22:05:25 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Script error in event 1 (coords 16,8), map 2 (Lappet Town)
+Exception: NoMethodError
+Message: undefined method `item_id' for {:species=>:RATTATA, :level=>5}:Hash
+
+***Full script:
+GameData::MapTrainer.notice(self)
+
+Backtrace:
+147:Battle:153:in `block in initialize'
+147:Battle:153:in `initialize'
+147:Battle:153:in `new'
+147:Battle:153:in `initialize'
+[Generation 9 Pack] [001] Battle.rb:19:in `initialize'
+[Generation 9 Pack] [005] Restore Consumable Item.rb:12:in `initialize'
+[Deluxe Battle Kit] [003] Deluxe Battle Rules.rb:399:in `initialize'
+[Deluxe Battle Kit] [001] Midbattle Overwrites.rb:17:in `initialize'
+[[DBK] Dynamax] [007] Dynamax Mechanics.rb:187:in `initialize'
+[[DBK] Terastallization] [006] Battle.rb:13:in `initialize'
+
+=================
+
+[2025-10-24 22:06:42 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Script error in event 1 (coords 16,8), map 2 (Lappet Town)
+Exception: NoMethodError
+Message: undefined method `item_id' for {:species=>:RATTATA, :level=>5}:Hash
+
+***Full script:
+GameData::MapTrainer.notice(self)
+
+Backtrace:
+147:Battle:153:in `block in initialize'
+147:Battle:153:in `initialize'
+147:Battle:153:in `new'
+147:Battle:153:in `initialize'
+[Generation 9 Pack] [001] Battle.rb:19:in `initialize'
+[Generation 9 Pack] [005] Restore Consumable Item.rb:12:in `initialize'
+[Deluxe Battle Kit] [003] Deluxe Battle Rules.rb:399:in `initialize'
+[Deluxe Battle Kit] [001] Midbattle Overwrites.rb:17:in `initialize'
+[[DBK] Dynamax] [007] Dynamax Mechanics.rb:187:in `initialize'
+[[DBK] Terastallization] [006] Battle.rb:13:in `initialize'
+
+=================
+
+[2025-10-24 22:07:49 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Script error in event 1 (coords 16,8), map 2 (Lappet Town)
+Exception: NoMethodError
+Message: undefined method `item_id' for {:species=>:RATTATA, :level=>5}:Hash
+
+***Full script:
+GameData::MapTrainer.notice(self)
+
+Backtrace:
+147:Battle:153:in `block in initialize'
+147:Battle:153:in `initialize'
+147:Battle:153:in `new'
+147:Battle:153:in `initialize'
+[Generation 9 Pack] [001] Battle.rb:19:in `initialize'
+[Generation 9 Pack] [005] Restore Consumable Item.rb:12:in `initialize'
+[Deluxe Battle Kit] [003] Deluxe Battle Rules.rb:399:in `initialize'
+[Deluxe Battle Kit] [001] Midbattle Overwrites.rb:17:in `initialize'
+[[DBK] Dynamax] [007] Dynamax Mechanics.rb:187:in `initialize'
+[[DBK] Terastallization] [006] Battle.rb:13:in `initialize'
+
+=================
+
+[2025-10-24 22:13:55 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: Errno::ENOENT
+Message: File No such file or directory @ rb_sysopen - PBS/trainer_types.txt not found.
+
+Backtrace:
+[Deluxe Battle Kit] [000] Compiler.rb:47:in `initialize'
+[Deluxe Battle Kit] [000] Compiler.rb:47:in `open'
+[Deluxe Battle Kit] [000] Compiler.rb:47:in `edit_and_rewrite_pbs_file_text'
+[Deluxe Battle Kit] [000] Compiler.rb:93:in `modify_pbs_file_contents_before_compiling'
+395:Compiler:985:in `compile_pbs_files'
+[[DBK] Raid Battles] [000] GameData - AdventureMap.rb:96:in `compile_pbs_files'
+395:Compiler:1018:in `compile_all'
+395:Compiler:1092:in `main'
+401:Main:29:in `mainFunctionDebug'
+401:Main:18:in `block in mainFunction'
+
+=================
+
+[2025-10-24 22:13:58 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: RuntimeError
+Message: Unknown exception when compiling.
+
+Backtrace:
+395:Compiler:1104:in `rescue in main'
+395:Compiler:1031:in `main'
+401:Main:29:in `mainFunctionDebug'
+401:Main:18:in `block in mainFunction'
+014:Errors:80:in `pbCriticalCode'
+401:Main:18:in `mainFunction'
+401:Main:45:in `block in <main>'
+401:Main:44:in `loop'
+401:Main:44:in `<main>'
+-e:in `eval'
+
+=================
+
+[2025-10-24 22:14:57 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: Errno::ENOENT
+Message: File No such file or directory @ rb_sysopen - PBS/trainer_types.txt not found.
+
+Backtrace:
+[Deluxe Battle Kit] [000] Compiler.rb:47:in `initialize'
+[Deluxe Battle Kit] [000] Compiler.rb:47:in `open'
+[Deluxe Battle Kit] [000] Compiler.rb:47:in `edit_and_rewrite_pbs_file_text'
+[Deluxe Battle Kit] [000] Compiler.rb:93:in `modify_pbs_file_contents_before_compiling'
+395:Compiler:985:in `compile_pbs_files'
+[[DBK] Raid Battles] [000] GameData - AdventureMap.rb:96:in `compile_pbs_files'
+395:Compiler:1018:in `compile_all'
+395:Compiler:1092:in `main'
+401:Main:29:in `mainFunctionDebug'
+401:Main:18:in `block in mainFunction'
+
+=================
+
+[2025-10-24 22:16:41 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: RuntimeError
+Message: Unknown exception when compiling.
+
+Backtrace:
+395:Compiler:1104:in `rescue in main'
+395:Compiler:1031:in `main'
+401:Main:29:in `mainFunctionDebug'
+401:Main:18:in `block in mainFunction'
+014:Errors:80:in `pbCriticalCode'
+401:Main:18:in `mainFunction'
+401:Main:45:in `block in <main>'
+401:Main:44:in `loop'
+401:Main:44:in `<main>'
+-e:in `eval'
+
+=================
+
+[2025-10-24 22:16:56 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: Errno::ENOENT
+Message: File No such file or directory @ rb_sysopen - PBS/moves.txt not found.
+
+Backtrace:
+[Deluxe Battle Kit] [000] Compiler.rb:47:in `initialize'
+[Deluxe Battle Kit] [000] Compiler.rb:47:in `open'
+[Deluxe Battle Kit] [000] Compiler.rb:47:in `edit_and_rewrite_pbs_file_text'
+[Deluxe Battle Kit] [000] Compiler.rb:96:in `modify_pbs_file_contents_before_compiling'
+395:Compiler:985:in `compile_pbs_files'
+[[DBK] Raid Battles] [000] GameData - AdventureMap.rb:96:in `compile_pbs_files'
+395:Compiler:1018:in `compile_all'
+395:Compiler:1092:in `main'
+401:Main:29:in `mainFunctionDebug'
+401:Main:18:in `block in mainFunction'
+
+=================
+
+[2025-10-24 22:17:01 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: RuntimeError
+Message: Unknown exception when compiling.
+
+Backtrace:
+395:Compiler:1104:in `rescue in main'
+395:Compiler:1031:in `main'
+401:Main:29:in `mainFunctionDebug'
+401:Main:18:in `block in mainFunction'
+014:Errors:80:in `pbCriticalCode'
+401:Main:18:in `mainFunction'
+401:Main:45:in `block in <main>'
+401:Main:44:in `loop'
+401:Main:44:in `<main>'
+-e:in `eval'
+
+=================
+
+[2025-10-24 22:22:07 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: NoMethodError
+Message: undefined method `strip' for nil:NilClass
+
+Backtrace:
+[RMXP Event Importer] 001_Event_Importer.rb:372:in `parse_event_definition'
+[RMXP Event Importer] 001_Event_Importer.rb:188:in `block (3 levels) in import_events_for_map'
+[RMXP Event Importer] 001_Event_Importer.rb:170:in `each_line'
+[RMXP Event Importer] 001_Event_Importer.rb:170:in `block (2 levels) in import_events_for_map'
+[RMXP Event Importer] 001_Event_Importer.rb:167:in `open'
+[RMXP Event Importer] 001_Event_Importer.rb:167:in `block in import_events_for_map'
+[RMXP Event Importer] 001_Event_Importer.rb:164:in `each'
+[RMXP Event Importer] 001_Event_Importer.rb:164:in `import_events_for_map'
+[RMXP Event Importer] 001_Event_Importer.rb:1749:in `block in <main>'
+036:Event_HandlerCollections:121:in `call'
+
+=================
+
+[2025-10-24 22:41:21 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: NameError
+Message: undefined local variable or method `fistAction' for #<Battle::AI>
+
+Backtrace:
+[[DBK] Improved Item AI] [001] Battle_AI.rb:171:in `item_usable_on_pokemon?'
+[[DBK] Improved Item AI] [001] Battle_AI.rb:65:in `block (2 levels) in choose_item_to_use'
+147:Battle:403:in `block in eachInTeamFromBattlerIndex'
+147:Battle:403:in `each'
+147:Battle:403:in `each_with_index'
+147:Battle:403:in `eachInTeamFromBattlerIndex'
+[[DBK] Improved Item AI] [001] Battle_AI.rb:49:in `block in choose_item_to_use'
+[[DBK] Improved Item AI] [001] Battle_AI.rb:40:in `each'
+[[DBK] Improved Item AI] [001] Battle_AI.rb:40:in `choose_item_to_use'
+200:AI_UseItem:88:in `pbChooseToUseItem'
+
+=================
+
+[2025-10-24 22:41:25 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: NameError
+Message: undefined local variable or method `fistAction' for #<Battle::AI>
+
+Backtrace:
+[[DBK] Improved Item AI] [001] Battle_AI.rb:171:in `item_usable_on_pokemon?'
+[[DBK] Improved Item AI] [001] Battle_AI.rb:65:in `block (2 levels) in choose_item_to_use'
+147:Battle:403:in `block in eachInTeamFromBattlerIndex'
+147:Battle:403:in `each'
+147:Battle:403:in `each_with_index'
+147:Battle:403:in `eachInTeamFromBattlerIndex'
+[[DBK] Improved Item AI] [001] Battle_AI.rb:49:in `block in choose_item_to_use'
+[[DBK] Improved Item AI] [001] Battle_AI.rb:40:in `each'
+[[DBK] Improved Item AI] [001] Battle_AI.rb:40:in `choose_item_to_use'
+200:AI_UseItem:88:in `pbChooseToUseItem'
+
+=================
+
+[2025-10-24 22:42:15 +0200]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Script error in event 3 (coords 6,5), map 10 (Cedolan City)
+Exception: NoMethodError
+Message: undefined method `to_sym' for #<GameData::Item>
+
+***Full script:
+pbReceiveItem(:TM80)
+
+Backtrace:
+[PBS Data System] [000] Base Classes.rb:186:in `get'
+[PBS Data System] [003] Hooks.rb:66:in `get'
+[Item Find Description] script.rb:62:in `pbShow'
+[Item Find Description] script.rb:125:in `register'
+[Item Find Description] script.rb:214:in `pbReceiveItem'
+(eval):1:in `execute_script'
+033:Interpreter:138:in `eval'
+033:Interpreter:138:in `execute_script'
+034:Interpreter_Commands:1177:in `command_355'
+034:Interpreter_Commands:116:in `execute_command'

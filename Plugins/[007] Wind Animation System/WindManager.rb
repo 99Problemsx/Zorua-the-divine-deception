@@ -1,62 +1,46 @@
 module Events
   module Animations
     class WindManager
-      MAX_PARTICLES = 2  # Maximum number of wind particles at a time
+      MAX_PARTICLES = 2
 
       def initialize(viewport)
         @viewport = viewport
         @particles = []
         @spawn_timer = 0
-        @spawn_delay = rand(60..120)  # Random delay between spawns
+        @spawn_delay = 180  # 3 Sekunden
       end
 
       def dispose
-        @particles.each { |particle| particle.dispose }
+        @particles.each(&:dispose)
         @particles.clear
       end
 
-      def disposed?
-        @particles.empty?
-      end
-
       def update
-        # Remove finished particles
-        @particles.delete_if do |particle|
-          if particle.finished?
-            particle.dispose
-            true
-          else
-            false
-          end
-        end
+        # Update existing particles
+        @particles.each(&:update)
 
-        # Spawn new particles if we're below the limit
+        # Remove finished particles
+        @particles.delete_if(&:finished?)
+
+        # Spawn new particles if below max
         @spawn_timer += 1
         if @spawn_timer >= @spawn_delay && @particles.length < MAX_PARTICLES
           spawn_particle
           @spawn_timer = 0
-          @spawn_delay = rand(60..120)
         end
-
-        # Update existing particles
-        @particles.each { |particle| particle.update }
       end
 
       private
 
       def spawn_particle
-        particle = Wind.new(@viewport)
+        particle = Events::Animations::Wind.new(@viewport)
         
-        # Random starting position (on-screen, visible)
-        particle.x = rand(0..Graphics.width)
-        particle.y = rand(0..Graphics.height)
-        particle.ex = 0
-        particle.ey = 0
+        # Zufällige Position - x/y sind die Basis-Position!
+        particle.x = rand(Graphics.width - 100) + 50
+        particle.y = rand(Graphics.height - 100) + 50
         particle.z = 100
-        particle.opacity = 255
-        particle.visible = true
         
-        @particles.push(particle)
+        @particles << particle
       end
     end
   end

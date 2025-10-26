@@ -66,6 +66,9 @@ class Lighting
   def setup_overlay
     bitmap = @overlay.bitmap
     bitmap.clear
+    # Reset blend type and opacity to default
+    @overlay.blend_type = 0
+    @overlay.opacity = 255
     return if !@map_settings
     overlay_settings = nil
     blend_type = 0
@@ -77,8 +80,12 @@ class Lighting
       overlay_settings = @map_settings.overlay || [Color.new(15, 38, 0, 200), Graphics.width / 2, 12]
       blend_type = 2
     end
-    bitmap.clear
-    return unless overlay_settings
+    # If no overlay settings, make overlay invisible
+    if !overlay_settings
+      @overlay.visible = false
+      return
+    end
+    @overlay.visible = true
     color  = overlay_settings[0]
     radius = overlay_settings[1]
     rings  = overlay_settings[2]
@@ -299,7 +306,9 @@ class Lighting
   end
 
   def outside?
-    return GameData::MapMetadata.exists?(@map.map_id) && GameData::MapMetadata.get(@map.map_id).outdoor_map
+    metadata = GameData::MapMetadata.get(@map.map_id) rescue nil
+    return false unless metadata
+    return metadata.outdoor_map || false
   end
 
   def night?

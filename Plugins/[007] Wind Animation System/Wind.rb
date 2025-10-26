@@ -1,7 +1,7 @@
 module Events
   module Animations
     class Wind
-      SPEED = 12
+      SPEED = 12 # Reduziert von 12 auf 2.0 - .lerp kompensiert bereits für Framerate!
 
       # @return [Integer]
       attr_accessor :x
@@ -27,29 +27,21 @@ module Events
         @ey = 0
         @opacity = 255
 
-        sprites.add(0, bitmap: 'Graphics/Animations/Wind/wind1')
-        sprites[0].src_rect.width = 0
-        sprites[0].src_rect.x = sprites[0].bitmap.width
-        sprites[0].oy = sprites[0].bitmap.height
-        sprites[0].toggle = 1
-        sprites[0].visible = true
-        sprites[0].z = 100
-        
-        sprites.add(1, bitmap: 'Graphics/Animations/Wind/wind2')
-        sprites[1].src_rect.height = 0
-        sprites[1].src_rect.y = sprites[1].bitmap.height
-        sprites[1].ox = sprites[1].bitmap.width
-        sprites[1].toggle = 1
-        sprites[1].visible = true
-        sprites[1].z = 100
-        
-        sprites.add(2, bitmap: 'Graphics/Animations/Wind/wind3')
-        sprites[2].src_rect.height = 0
-        sprites[2].end_y = sprites[2].bitmap.height
-        sprites[2].ox = sprites[2].bitmap.width
-        sprites[2].toggle = 1
-        sprites[2].visible = true
-        sprites[2].z = 100
+        sprites.add(0, bitmap: 'Graphics/Animations/Wind/wind1') do |s|
+          s.src_rect.width = 0
+          s.src_rect.x = s.bitmap.width
+          s.oy = s.bitmap.height
+        end
+        sprites.add(1, bitmap: 'Graphics/Animations/Wind/wind2') do |s|
+          s.src_rect.height = 0
+          s.src_rect.y = s.bitmap.height
+          s.ox = s.bitmap.width
+        end
+        sprites.add(2, bitmap: 'Graphics/Animations/Wind/wind3') do |s|
+          s.src_rect.height = 0
+          s.end_y = s.bitmap.height
+          s.ox = s.bitmap.width
+        end
       end
 
       # Checks if sprite finished animating?
@@ -86,46 +78,46 @@ module Events
         # Handle beginning of swirl
         case sprites[0].toggle
         when 1
-          sprites[0].ex += SPEED
-          sprites[0].src_rect.width = sprites[0].ex.to_i
-          sprites[0].end_x = sprites[0].width
-          sprites[0].src_rect.x = sprites[0].bitmap.width - sprites[0].width
-          sprites[0].toggle = 2 if sprites[0].width >= sprites[0].bitmap.width
+          sprites[0].ex += SPEED.lerp
+          sprites[0].src_rect.width = sprites[0].ex.to_i  # Explizite Konvertierung zu Integer
+          sprites[0].end_x = sprites[0].src_rect.width
+          sprites[0].src_rect.x = sprites[0].bitmap.width - sprites[0].src_rect.width
+          sprites[0].toggle = 2 if sprites[0].src_rect.width >= sprites[0].bitmap.width
         when 2
-          sprites[0].ex -= SPEED
-          sprites[0].src_rect.width = sprites[0].ex.to_i
-          sprites[0].toggle = 3 if sprites[0].width <= 0
+          sprites[0].ex -= SPEED.lerp
+          sprites[0].src_rect.width = sprites[0].ex.to_i  # Explizite Konvertierung zu Integer
+          sprites[0].toggle = 3 if sprites[0].src_rect.width <= 0
         end
 
-        # Handle loop at the swirl
-        if sprites[0].width >= 280 || sprites[0].toggle > 1
+        # Handle loop at the swirl - startet erst wenn sprites[0] KOMPLETT fertig
+        if sprites[0].toggle >= 2
           case sprites[1].toggle
           when 1
-            sprites[1].ey += SPEED
-            sprites[1].src_rect.height = sprites[1].ey.to_i
-            sprites[1].end_y = sprites[1].height
-            sprites[1].src_rect.y = sprites[1].bitmap.height - sprites[1].height
-            sprites[1].toggle = 2 if sprites[1].height >= sprites[1].bitmap.height
+            sprites[1].ey += SPEED.lerp
+            sprites[1].src_rect.height = sprites[1].ey.to_i  # Explizite Konvertierung zu Integer
+            sprites[1].end_y = sprites[1].src_rect.height
+            sprites[1].src_rect.y = sprites[1].bitmap.height - sprites[1].src_rect.height
+            sprites[1].toggle = 2 if sprites[1].src_rect.height >= sprites[1].bitmap.height
           when 2
-            sprites[1].ey -= SPEED
-            sprites[1].src_rect.height = sprites[1].ey.to_i
-            sprites[1].toggle = 3 if sprites[1].height <= 0
+            sprites[1].ey -= SPEED.lerp
+            sprites[1].src_rect.height = sprites[1].ey.to_i  # Explizite Konvertierung zu Integer
+            sprites[1].toggle = 3 if sprites[1].src_rect.height <= 0
           end
         end
 
-        # Handle tail of the swirl
-        if sprites[1].toggle > 1
+        # Handle tail of the swirl - startet erst wenn sprites[1] KOMPLETT fertig
+        if sprites[1].toggle >= 2
           case sprites[2].toggle
           when 1
-            sprites[2].ey += SPEED
-            sprites[2].src_rect.height = sprites[2].ey.to_i
-            sprites[2].toggle = 2 if sprites[2].height >= sprites[2].bitmap.height
+            sprites[2].ey += SPEED.lerp
+            sprites[2].src_rect.height = sprites[2].ey.to_i  # Explizite Konvertierung zu Integer
+            sprites[2].toggle = 2 if sprites[2].src_rect.height >= sprites[2].bitmap.height
           when 2
-            sprites[2].ey -= SPEED
-            sprites[2].src_rect.height = sprites[2].ey.to_i
-            sprites[2].end_y = sprites[2].height
-            sprites[2].src_rect.y = sprites[2].bitmap.height - sprites[2].height
-            sprites[2].toggle = 3 if sprites[2].height <= 0
+            sprites[2].ey -= SPEED.lerp
+            sprites[2].src_rect.height = sprites[2].ey.to_i  # Explizite Konvertierung zu Integer
+            sprites[2].end_y = sprites[2].src_rect.height
+            sprites[2].src_rect.y = sprites[2].bitmap.height - sprites[2].src_rect.height
+            sprites[2].toggle = 3 if sprites[2].src_rect.height <= 0
           end
         end
 

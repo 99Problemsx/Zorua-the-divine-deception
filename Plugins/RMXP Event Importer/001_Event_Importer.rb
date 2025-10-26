@@ -78,6 +78,14 @@ module EventImporter
           current_map_id = $1.to_i
           echoln("Loading Map #{current_map_id}")
           current_map = load_map(current_map_id)
+          
+          # Clear all existing events to prevent duplicates
+          event_count_before = current_map.events.size
+          if event_count_before > 0
+            echoln("  Clearing #{event_count_before} existing event(s) before import")
+            current_map.events.clear
+          end
+          
           map_data = { event_count: 0 }
           next
         end
@@ -90,7 +98,7 @@ module EventImporter
           end
           event = parse_event_definition(file, line, current_map)
           if event
-            add_event_to_map(current_map, event)
+            add_event_to_map(current_map, event, current_map_id)
             map_data[:event_count] += 1
             echoln("  Added event: #{event.name} at (#{event.x}, #{event.y})")
           end
@@ -179,7 +187,7 @@ module EventImporter
           if found_target_map && line =~ /^EVENT\s*[:=]/i
             event = parse_event_definition(file, line, current_map)
             if event
-              add_event_to_map(current_map, event)
+              add_event_to_map(current_map, event, target_map_id)
               total_imported += 1
               echoln("  ✓ Imported: #{event.name} at (#{event.x}, #{event.y})")
             end
@@ -257,6 +265,8 @@ module EventImporter
     echoln("DEBUG: Starting to parse event properties and commands")
     while line = file.gets
       line = line.strip
+      # Skip comment lines
+      next if line.start_with?("#")
       # Break on empty line (end of event) or new event/map declaration
       if line.empty?
         echoln("DEBUG: Empty line - end of event")
@@ -351,6 +361,61 @@ module EventImporter
         level = $2 ? $2.to_i : 5
         commands << create_pokemon_command(species, level)
         echoln("DEBUG: Created POKEMON command - #{species} lv#{level}")
+      when /^MAPTRAINER\s*[:=]\s*(.+)/i
+        # Parse MAPTRAINER block
+        trainer_info = $1.strip
+        
+        # Parse manually to handle quotes properly
+        # Format: TYPE, Name, "Lose text" or TYPE, Name
+        parts = []
+        current = ""
+        in_quotes = false
+        quote_char = nil
+        
+        trainer_info.each_char do |char|
+          if (char == '"' || char == "'") && !in_quotes
+            in_quotes = true
+            quote_char = char
+          elsif char == quote_char && in_quotes
+            in_quotes = false
+            quote_char = nil
+          elsif char == ',' && !in_quotes
+            parts << current.strip
+            current = ""
+            next
+          end
+          current << char unless (char == '"' || char == "'")
+        end
+        parts << current.strip if !current.empty?
+        
+        # Parse parts
+        if parts.length >= 3
+          # Has lose text
+          trainer_type = parts[0].sub(/^:/, '').to_sym
+          trainer_name = parts[1].strip
+          lose_text = parts[2].strip
+        elsif parts.length == 2
+          # No lose text
+          trainer_type = parts[0].sub(/^:/, '').to_sym
+          trainer_name = parts[1].strip
+          lose_text = "..."
+        else
+          echoln("ERROR: Failed to parse MAPTRAINER: #{trainer_info}")
+          next
+        end
+        
+        echoln("DEBUG: MAPTRAINER parsed - Type: #{trainer_type}, Name: #{trainer_name}, Lose Text: #{lose_text}")
+        
+        # Parse trainer party and settings
+        trainer_data = parse_maptrainer_block(file, map, event, trainer_type, trainer_name, lose_text)
+        
+        if trainer_data
+          # Store trainer data on the event for registration later
+          event.instance_variable_set(:@maptrainer_data, trainer_data)
+          # Add the battle trigger command
+          commands << RPG::EventCommand.new(355, 0, ["GameData::MapTrainer.notice(self)"])
+          echoln("DEBUG: Created MAPTRAINER command - #{trainer_type} #{trainer_name}")
+        end
       when /^CHOICE\s*[:=]\s*(.+)/i
         # Support both pipe (|) and comma (,) as separators
         # Pipe is preferred for choices with commas in the text
@@ -706,11 +771,34 @@ module EventImporter
         commands << parse_screen_tone($1.strip)
         echoln("DEBUG: Created CHANGE_SCREEN_TONE command")
       when /^NEW_PAGE/i
-        # Finalize current page
+        # Finalize current page with full post-processing
+        echoln("DEBUG: NEW_PAGE - Starting to finalize page #{event.pages.length + 1}")
+        echoln("DEBUG: Page has #{commands.length} commands before post-processing")
+        
+        # Apply same post-processing as final page
+        commands.compact!
+        echoln("DEBUG: After removing nil commands - #{commands.length} commands")
+        
+        commands = fix_choice_branches(commands)
+        echoln("DEBUG: After fix_choice_branches - #{commands.length} commands")
+        
+        commands.compact!
+        echoln("DEBUG: After removing nil commands - #{commands.length} commands")
+        
+        commands = fix_conditional_structure(commands)
+        echoln("DEBUG: After fix_conditional_structure - #{commands.length} commands")
+        
+        commands.compact!
+        echoln("DEBUG: After final nil removal - #{commands.length} commands")
+        
+        # Add terminator
         commands << RPG::EventCommand.new(0, 0, [])
+        echoln("DEBUG: Added terminator - total #{commands.length} commands")
+        
         page.list = commands
-        event.pages << page  # Add the current page
+        event.pages << page  # Add the completed page
         echoln("DEBUG: NEW_PAGE - Finalized page #{event.pages.length}, starting page #{event.pages.length + 1}")
+        
         # Create new page (don't add to array yet, will be added at the end)
         page = RPG::Event::Page.new
         # Clear default graphic for new page
@@ -1147,6 +1235,98 @@ module EventImporter
     RPG::EventCommand.new(355, 0, [script])
   end
   
+  def self.parse_maptrainer_block(file, map, event, trainer_type, trainer_name, lose_text)
+    # Parse MAPTRAINER block and return trainer data
+    trainer_data = {
+      :type => trainer_type,
+      :name => trainer_name,
+      :lose_text => lose_text,
+      :intro_text => nil,
+      :party => [],
+      :items => []
+    }
+    
+    echoln("  Parsing MAPTRAINER block for #{trainer_type} #{trainer_name}")
+    
+    while line = file.gets
+      line = line.strip
+      break if line.empty? || line =~ /^(EVENT|MAP)\s*[:=]/i
+      next if line.start_with?("#")
+      
+      case line
+      when /^END_MAPTRAINER/i
+        echoln("  ✓ MAPTRAINER complete: #{trainer_data[:party].length} Pokemon")
+        return trainer_data
+      when /^TRAINER_INTRO\s*[:=]\s*(.+)/i
+        trainer_data[:intro_text] = $1.strip.gsub(/^["']|["']$/, '')
+        echoln("    Trainer intro set")
+      when /^TRAINER_ITEMS\s*[:=]\s*(.+)/i
+        items_str = $1.strip
+        items = items_str.split(/\s*,\s*/).map { |item| item.gsub(/^:/, '').to_sym }
+        trainer_data[:items] = items
+        echoln("    Trainer items: #{items.length}")
+      when /^POKEMON\s*[:=]\s*(.+)/i
+        pokemon_str = $1.strip
+        species = nil
+        level = 5
+        ability = nil
+        item = nil
+        moves = []
+        gender = nil
+        
+        # Parse Pokemon definition
+        if pokemon_str =~ /^:?(\w+)\s*,\s*(\d+)(.*)$/
+          species = $1.to_sym
+          level = $2.to_i
+          rest = $3.strip
+          
+          # Parse optional parameters
+          if rest =~ /ability\s*[:=]\s*:?(\w+)/i
+            ability = $1.to_sym
+          end
+          if rest =~ /item\s*[:=]\s*:?(\w+)/i
+            item = $1.to_sym
+          end
+          if rest =~ /gender\s*[:=]\s*:?(\w+)/i
+            gender_str = $1.to_s.downcase
+            gender = case gender_str
+              when 'male', 'm', '0' then 0
+              when 'female', 'f', '1' then 1
+              else 2
+            end
+          end
+          if rest =~ /moves?\s*[:=]\s*\[([^\]]+)\]/i
+            moves = $1.split(/\s*,\s*/).map { |m| m.strip.gsub(/^:/, '').to_sym }
+          elsif rest =~ /moves?\s*[:=]\s*(.+?)(?:,\s*(?:ability|item|gender)|$)/i
+            moves = $1.split(/\s*,\s*/).map { |m| m.strip.gsub(/^:/, '').to_sym }
+          end
+        end
+        
+        if species && GameData::Species.exists?(species)
+          # Create trainer party data (NOT a real Pokemon object)
+          pokemon_data = {
+            :species => species,
+            :level => level
+          }
+          pokemon_data[:ability] = ability if ability && GameData::Ability.exists?(ability)
+          pokemon_data[:item] = item if item && GameData::Item.exists?(item)
+          pokemon_data[:gender] = gender unless gender.nil?
+          pokemon_data[:moves] = moves if moves.any?
+          
+          trainer_data[:party] << pokemon_data
+          echoln("    + #{species} Lv.#{level}")
+        else
+          echoln("    WARNING: Species #{species} not found!")
+        end
+      end
+    end
+    
+    # If we got here, END_MAPTRAINER wasn't found
+    echoln("  WARNING: MAPTRAINER block ended without END_MAPTRAINER")
+    return trainer_data if trainer_data[:party].any?
+    return nil
+  end
+  
   def self.create_choice_command(choices)
     # Command 102: Show Choices
     # Parameters: [choices_array, cancel_type]
@@ -1415,7 +1595,7 @@ module EventImporter
   end
   
   # Add or update event on map
-  def self.add_event_to_map(map, event)
+  def self.add_event_to_map(map, event, map_id)
     # Check if an event with the same name and position already exists
     existing_event = nil
     existing_id = nil
@@ -1439,6 +1619,26 @@ module EventImporter
       map.events.each_key { |id| max_id = id if id > max_id }
       event.id = max_id + 1
       map.events[event.id] = event
+    end
+    
+    # Check if this event has MapTrainer data and register it
+    if event.instance_variable_defined?(:@maptrainer_data)
+      trainer_data = event.instance_variable_get(:@maptrainer_data)
+      
+      # Register the trainer with GameData::MapTrainer
+      GameData::MapTrainer.register_from_import(
+        map_id,
+        event.id,
+        trainer_data[:type],
+        trainer_data[:name],
+        trainer_data[:party],
+        trainer_data[:items],
+        trainer_data[:lose_text],
+        trainer_data[:intro_text]
+      )
+      
+      # Clean up temp data
+      event.remove_instance_variable(:@maptrainer_data)
     end
   end
   
@@ -1473,22 +1673,20 @@ module EventImporter
       map.width = new_width
       map.height = new_height
       
-      # Resize data layers (3 layers in RMXP)
-      3.times do |z|
-        old_data = map.data
-        new_data = Table.new(new_width, new_height, 3)
-        
-        # Copy old data to new table
-        (0...old_width).each do |x|
-          (0...old_height).each do |y|
-            (0...3).each do |layer|
-              new_data[x, y, layer] = old_data[x, y, layer]
-            end
+      # Resize data table (RMXP has 3 layers: ground, middle, upper)
+      old_data = map.data
+      new_data = Table.new(new_width, new_height, 3)
+      
+      # Copy old data to new table
+      (0...old_width).each do |x|
+        (0...old_height).each do |y|
+          (0...3).each do |layer|
+            new_data[x, y, layer] = old_data[x, y, layer]
           end
         end
-        
-        map.data = new_data
       end
+      
+      map.data = new_data
       
       echoln("  Map resized successfully!")
     end
@@ -1663,6 +1861,25 @@ MenuHandlers.add(:debug_menu, :delete_map_events, {
           puts e.backtrace
         end
       end
+    end
+  }
+})
+
+# Debug menu option - Reset Self Switches
+MenuHandlers.add(:debug_menu, :reset_self_switches, {
+  "name"        => _INTL("Reset Self Switches"),
+  "parent"      => :main,
+  "description" => _INTL("Reset all self switches (useful after re-importing events)."),
+  "effect"      => proc { |menu|
+    if pbConfirmMessage(_INTL("Reset all self switches?\nThis will reset all trainer battles!"))
+      # Access the internal hash
+      data = $game_self_switches.instance_variable_get(:@data)
+      count = data.size
+      
+      # Clear all switches using the internal hash
+      data.each_key { |key| $game_self_switches[key] = false }
+      
+      pbMessage(_INTL("Reset {1} self switch(es).", count))
     end
   }
 })

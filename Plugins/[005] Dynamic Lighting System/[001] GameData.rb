@@ -33,12 +33,57 @@ module GameData
     extend ClassMethodsSymbols
     include InstanceMethods
 
-    def self.load; end
-    def self.save; end
+    # Load custom lights from save file
+    def self.load
+      path = RX_Data.get_path("Data/custom_lights.rxdata")
+      if safeExists?(path)
+        begin
+          File.open(path, "rb") do |file|
+            data = Marshal.load(file)
+            data.each { |hash| self.register(hash) }
+          end
+          echoln("Loaded #{DATA.length} custom lights from save file")
+        rescue => e
+          echoln("Error loading custom lights: #{e.message}")
+        end
+      end
+    end
+    
+    # Save custom lights to file (only those with debug_ prefix)
+    def self.save
+      custom_lights = []
+      self.each do |effect|
+        # Only save debug lights (those added via debug menu)
+        if effect.id.to_s.start_with?("debug_")
+          custom_lights.push({
+            :id => effect.id,
+            :type => effect.type,
+            :map_x => effect.map_x,
+            :map_y => effect.map_y,
+            :map_id => effect.map_id,
+            :radius => effect.radius,
+            :width => effect.width,
+            :height => effect.height,
+            :stop_anim => effect.stop_anim,
+            :day => effect.day
+          })
+        end
+      end
+      
+      path = RX_Data.get_path("Data/custom_lights.rxdata")
+      File.open(path, "wb") do |file|
+        Marshal.dump(custom_lights, file)
+      end
+      echoln("Saved #{custom_lights.length} custom lights")
+    end
 
     def self.add(hash)
       hash[:id] = rand(1000000) unless hash[:id]
       self.register(hash)
+      # Auto-save debug lights
+      if hash[:id].to_s.start_with?("debug_")
+        self.save
+      end
     end
 
     def self.bulk_add_circle(map_id, coords, radius = 64, day = false)

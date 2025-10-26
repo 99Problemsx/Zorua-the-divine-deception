@@ -139,13 +139,33 @@ class PokemonGlobalMetadata
   attr_accessor :challenge_qued
   attr_accessor :challenge_started
   attr_accessor :challenge_rules
-  attr_accessor :challenge_encs
-
+  attr_writer :challenge_encs
   attr_writer :challenge_state
+
+  def challenge_encs
+    @challenge_encs = {} if !@challenge_encs.is_a?(Hash)
+    return @challenge_encs
+  end
 
   def challenge_state
     @challenge_state = {} if !@challenge_state.is_a?(Hash)
     return @challenge_state
   end
 end
+
+#-------------------------------------------------------------------------------
+# Restore @@started state when loading a save
+#-------------------------------------------------------------------------------
+EventHandlers.add(:on_game_start, :restore_challenge_state,
+  proc {
+    if $PokemonGlobal && $PokemonGlobal.challenge_started
+      # Challenge was active when saved - restore it
+      ChallengeModes.toggle(true)
+      echoln("Challenge Modes: Restored active challenge state from save")
+    else
+      # No challenge was active (or player chose not to use challenges) - ensure it's off
+      ChallengeModes.toggle(false)
+    end
+  }
+)
 

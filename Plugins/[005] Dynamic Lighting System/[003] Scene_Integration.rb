@@ -2,6 +2,13 @@
 # Integration with Scene_Map
 # ===============================================================================
 
+# Load custom lights on game start
+EventHandlers.add(:on_game_start, :load_custom_lights,
+  proc {
+    GameData::LightEffect.load
+  }
+)
+
 class Scene_Map
   alias lighting_createSpritesets createSpritesets
   def createSpritesets

@@ -70,6 +70,17 @@ module ChallengeModes
     end
   end
   #-----------------------------------------------------------------------------
+  # Early randomizer activation (called from map events)
+  #-----------------------------------------------------------------------------
+  def begin_randomizer_early
+    return if !$PokemonGlobal&.challenge_rules&.include?(:RANDOMIZER_MODE)
+    return if $PokemonGlobal.challenge_randomizer_active
+    
+    initialize_randomizer if !$PokemonGlobal.challenge_randomizer_seed
+    $PokemonGlobal.challenge_randomizer_active = true
+    echoln ">>> Randomizer mode activated early (will work on starters)"
+  end
+  #-----------------------------------------------------------------------------
   # Clear all challenge data and stop the challenge
   #-----------------------------------------------------------------------------
   def reset

@@ -1,0 +1,36 @@
+Name = PBS Data System
+Version = 2.0
+Credits = Based on Luka S.J.'s approach, 99Problemsx
+Link = https://github.com/99Problemsx/Zorua-the-divine-deception
+
+#=============================================================================
+# PBS Data System - Complete PBS Replacement
+#=============================================================================
+# Replaces the ENTIRE PBS system with Ruby classes using DSL syntax.
+# 
+# Features:
+# - Pokemon: 1025 species + 447 forms with moves, evolutions, abilities
+# - Moves: 660+ moves organized by type
+# - Items: 696 items organized by pocket  
+# - Abilities, Types, Trainer Types
+# - Trainers: Full battle data with Pokemon teams
+# - Encounters: Wild Pokemon by map with density
+# - Map Metadata: Names, outdoor, healing spots, positions
+# - Map Connections: Directional map connections
+# - Global Metadata: Home, start money, settings
+#
+# Usage Examples:
+#   pbTrainer(:LEADER_Brock_Brock_0)        # Start trainer battle
+#   Data::Species.get(:PIKACHU)              # Get Pokemon data
+#   Data::Move.get(:THUNDERBOLT)             # Get move data
+#   Data::Encounter.for_map(5)               # Get map encounters
+#   Data::MapMetadata.get_name(2)            # Get map name
+#
+# Organization:
+#   Pokemon: PBS/Data/Pokemon/gen_1.rb through gen_9.rb
+#   Moves: PBS/Data/Moves/[type].rb (18 files)
+#   Items: PBS/Data/Items/[pocket].rb (8 files)
+#   Trainers: PBS/Data/Trainers/trainers.rb
+#   Encounters: PBS/Data/Misc/encounters.rb
+#   Maps: PBS/Data/Misc/map_metadata.rb, map_connections.rb
+#=============================================================================

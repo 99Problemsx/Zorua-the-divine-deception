@@ -1,9 +1,11 @@
 # RMXP Event Importer Plugin
+
 ## Version 1.3 - Complete Edition
 
 Create RPG Maker XP events from simple text files!
 
 ## 🎯 Features
+
 - ✅ Create events from text files
 - ✅ Update existing events automatically (no duplicates!)
 - ✅ **50+ RMXP event commands** supported
@@ -15,6 +17,7 @@ Create RPG Maker XP events from simple text files!
 - ✅ Debug menu integration
 
 ## 📦 Installation
+
 1. Copy the `RMXP Event Importer` folder to `Plugins/`
 2. Create the `EventImporter/` folder in your project root
 3. Place your event text files in `EventImporter/`
@@ -37,6 +40,7 @@ TEXT: This is line 2.
 ## 🎮 Event Properties
 
 ### Basic Properties
+
 ```
 EVENT: Name, X: x, Y: y          # Event name and position (REQUIRED)
 GRAPHIC: filename                 # Character graphic
@@ -56,6 +60,7 @@ DIRECTION_FIX: true               # Don't change direction
 **Move Types:** `Fixed`, `Random`, `Approach`, `Custom`
 
 ### 📄 Multiple Pages
+
 ```
 EVENT: Multi Page NPC, X: 12, Y: 5
 GRAPHIC: NPC 01
@@ -69,6 +74,7 @@ TEXT: This is page 2 (shows when self switch A is ON)
 ```
 
 ### 🔒 Page Conditions
+
 ```
 CONDITION_SWITCH: 10, ON              # Require switch 10 to be ON
 CONDITION_SELF_SWITCH: A              # Require self switch A
@@ -80,12 +86,14 @@ CONDITION_VARIABLE: 5 >= 10           # Require variable 5 >= 10
 ## 💬 Dialogue & Text Commands
 
 ### Simple Text
+
 ```
 TEXT: Hello there!
 TEXT: How are you today?
 ```
 
 ### Choices
+
 ```
 CHOICE: Yes, No, Maybe
 CONDITIONAL: CHOICE == 0
@@ -97,6 +105,7 @@ CONDITIONAL: ELSE
 ```
 
 ### Scripts
+
 ```
 SCRIPT: pbMessage("Hello!")
 SCRIPT: pbHealAll
@@ -104,6 +113,7 @@ SCRIPT: pbTrainerBattle(:YOUNGSTER, "Joey", "You win!", false)
 ```
 
 **Multi-line scripts:**
+
 ```
 SCRIPT: pbPokemonMart([
 SCRIPT:   :POTION,
@@ -112,9 +122,56 @@ SCRIPT:   :ANTIDOTE
 SCRIPT: ])
 ```
 
+## 🥊 Trainer Battles (MapTrainer System)
+
+The Event Importer includes an integrated trainer system that makes creating trainer battles easy!
+
+### Basic Trainer
+
+```
+EVENT: Camper Liam, X: 10, Y: 5
+GRAPHIC: trainer_CAMPER
+TRIGGER: Action
+CONDITIONAL: SELF_SWITCH A == OFF
+  TEXT: Want to battle?
+  MAPTRAINER: CAMPER, Liam, "You won!"
+    POKEMON: RATTATA, 5
+    POKEMON: PIDGEY, 6
+  END_MAPTRAINER
+CONDITIONAL: ELSE
+  TEXT: Good battle!
+```
+
+### Advanced Trainer with Items
+
+```
+MAPTRAINER: YOUNGSTER, Ben, "I lost!"
+  TRAINER_INTRO: I'll be the best!
+  TRAINER_ITEMS: POTION, POKEBALL
+  POKEMON: CATERPIE, 7, moves: TACKLE, STRING_SHOT
+  POKEMON: WEEDLE, 7, item: ORAN_BERRY
+END_MAPTRAINER
+```
+
+### Pokemon with Abilities & Gender
+
+```
+POKEMON: PIKACHU, 10, ability: STATIC, item: LIGHT_BALL, gender: female
+POKEMON: CHARIZARD, 50, ability: BLAZE, moves: FLAMETHROWER, AIR_SLASH, DRAGON_CLAW
+```
+
+**Features:**
+
+- ✅ Automatic self-switch management (prevents re-battling)
+- ✅ Custom intro text before battle
+- ✅ Trainer items (potions, revives, etc.)
+- ✅ Pokemon with custom moves, abilities, items, gender
+- ✅ Integrated with Essentials' battle system
+
 ## 🎯 Control Flow
 
 ### Conditionals
+
 ```
 # Switch condition
 CONDITIONAL: SWITCH 10 == ON
@@ -132,6 +189,7 @@ CONDITIONAL: CHOICE == 0
 ```
 
 ### Loops & Labels
+
 ```
 # Label/Jump loop
 VARIABLE: 10, = 0
@@ -149,6 +207,7 @@ LOOP_END
 ```
 
 ### Control Commands
+
 ```
 EXIT_EVENT               # Stop event execution
 ERASE_EVENT             # Erase this event permanently
@@ -159,6 +218,7 @@ COMMENT: Dev note here  # Add comment (invisible in game)
 ## 🎛️ Game State Commands
 
 ### Switches & Variables
+
 ```
 SWITCH: 10, ON                    # Turn switch 10 ON
 SWITCH: 20, OFF                   # Turn switch 20 OFF
@@ -170,6 +230,7 @@ VARIABLE: 5, = VAR[10]            # Set variable 5 to value of variable 10
 ```
 
 ### Items, Money & Pokemon
+
 ```
 ITEM: POTION, 5                   # Give 5 Potions
 POKEMON: PIKACHU, 25              # Give level 25 Pikachu
@@ -184,12 +245,15 @@ CHANGE_PARTY: 2, REMOVE           # Remove actor 2 from party
 ## 🚶 Movement & Transfer
 
 ### Player Transfer
+
 ```
 TRANSFER: 2, 10, 15, Down
 ```
+
 **Format:** `map_id, x, y, direction`
 
 ### 🎬 Move Routes
+
 ```
 SET_MOVE_ROUTE: PLAYER, THROUGH_ON, MOVE_UP, MOVE_UP, THROUGH_OFF
 SET_MOVE_ROUTE: 0, TURN_LEFT, TURN_RIGHT, TURN_UP
@@ -197,6 +261,7 @@ WAIT_FOR_MOVE
 ```
 
 **Target:**
+
 - `PLAYER` = Player character
 - `0` = This event
 - `5` = Event ID 5
@@ -204,6 +269,7 @@ WAIT_FOR_MOVE
 #### Movement Commands (40+ available!)
 
 **Basic Movement:**
+
 - `MOVE_DOWN`, `MOVE_LEFT`, `MOVE_RIGHT`, `MOVE_UP`
 - `MOVE_LOWER_LEFT`, `MOVE_LOWER_RIGHT`
 - `MOVE_UPPER_LEFT`, `MOVE_UPPER_RIGHT`
@@ -212,12 +278,14 @@ WAIT_FOR_MOVE
 - `STEP_FORWARD`, `STEP_BACKWARD`
 
 **Turning:**
+
 - `TURN_DOWN`, `TURN_LEFT`, `TURN_RIGHT`, `TURN_UP`
 - `TURN_90_RIGHT`, `TURN_90_LEFT`, `TURN_180`
 - `TURN_90_RIGHT_OR_LEFT`, `TURN_RANDOM`
 - `TURN_TOWARD_PLAYER`, `TURN_AWAY_FROM_PLAYER`
 
 **Animation Options:**
+
 - `MOVE_ANIMATION_ON/OFF` - Walking animation
 - `STOP_ANIMATION_ON/OFF` - Stepping animation while stopped
 - `DIRECTION_FIX_ON/OFF` - Lock facing direction
@@ -225,14 +293,17 @@ WAIT_FOR_MOVE
 - `ALWAYS_ON_TOP_ON/OFF` - Display above other events
 
 ### Set Event Position
+
 ```
 SET_EVENT_LOCATION: 5, 20, 15
 ```
+
 **Format:** `event_id, x, y`
 
 ## 🎨 Screen Effects
 
 ### Fading
+
 ```
 FADEOUT               # Fade to black
 WAIT: 20             # Wait 20 frames
@@ -241,15 +312,19 @@ FADEIN               # Fade in from black
 ```
 
 ### Screen Tone (Color Tint)
+
 ```
 CHANGE_SCREEN_TONE: -255, -255, -255, 0, 20
 ```
+
 **Format:** `red, green, blue, gray, duration`
+
 - Values: -255 to +255
 - Negative = darker, Positive = brighter
 - Duration in frames (60 = 1 second)
 
 **Examples:**
+
 ```
 CHANGE_SCREEN_TONE: -255, -255, -255, 0, 30    # Fade to black
 CHANGE_SCREEN_TONE: 0, 0, 0, 0, 30             # Back to normal
@@ -258,20 +333,26 @@ CHANGE_SCREEN_TONE: 100, 50, 0, 0, 20          # Orange tint (sunset)
 ```
 
 ### Screen Flash
+
 ```
 SCREEN_FLASH: 255, 0, 0, 255, 20
 ```
+
 **Format:** `red, green, blue, alpha, duration`
+
 - Values: 0-255
 - Alpha: 0 = invisible, 255 = solid
 
 ### Screen Shake
+
 ```
 SCREEN_SHAKE: 5, 5, 30
 ```
+
 **Format:** `power, speed, duration`
 
 ### Player Transparency
+
 ```
 CHANGE_TRANSPARENT: ON     # Make player invisible
 CHANGE_TRANSPARENT: OFF    # Make player visible
@@ -320,6 +401,7 @@ CHANGE_ENCOUNTER: ENABLE           # Enable wild encounters
 ## 📚 Complete Examples
 
 ### Example 1: Simple Door Event
+
 ```
 EVENT: House Door, X: 10, Y: 5
 GRAPHIC: doors5
@@ -334,6 +416,7 @@ FADEIN
 ```
 
 ### Example 2: Quest NPC (3 Pages)
+
 ```
 EVENT: Quest Giver, X: 12, Y: 7
 GRAPHIC: NPC 04
@@ -364,7 +447,7 @@ CONDITIONAL: CHOICE == 0
   SWITCH: 50, OFF
 CONDITIONAL: ELSE
   TEXT: Please keep looking!
-  
+
 NEW_PAGE
 GRAPHIC: NPC 04
 CONDITION_SELF_SWITCH: B
@@ -373,6 +456,7 @@ TEXT: We're so happy together now.
 ```
 
 ### Example 3: Treasure Chest
+
 ```
 EVENT: Treasure Chest, X: 15, Y: 10
 GRAPHIC: chest1
@@ -396,6 +480,7 @@ TEXT: The chest is empty.
 ```
 
 ### Example 4: Healing Station
+
 ```
 EVENT: Healing Station, X: 20, Y: 8
 GRAPHIC: healingmachine
@@ -412,6 +497,7 @@ TEXT: Come back anytime!
 ```
 
 ### Example 5: Spinning NPC
+
 ```
 EVENT: Dizzy Guy, X: 18, Y: 12
 GRAPHIC: NPC 05
@@ -427,11 +513,14 @@ TEXT: I'm so dizzy now!
 ## 🐛 Debugging
 
 ### Debug Menu (F9)
+
 1. **Import Events Now** - Manually trigger import
 2. **Clear Imported Events** - Remove all imported events from Map 003
 
 ### Console Output
+
 The plugin shows detailed output during startup:
+
 ```
 Importing events from: test_simple.txt
 Processing map 3
@@ -455,6 +544,7 @@ Added event: Simple NPC at (10, 5)
 ## ⚠️ Known Limitations
 
 **Not Yet Implemented:**
+
 - Jump commands with X/Y parameters in move routes
 - Graphic changes during move routes
 - SE/Script commands in move routes
@@ -462,6 +552,7 @@ Added event: Simple NPC at (10, 5)
 - Complex page graphic patterns
 
 **Text Formatting:**
+
 - Use `\v[n]` for variables in text
 - Use `\n[n]` for actor names in text
 - Some special characters may need escaping
@@ -469,6 +560,7 @@ Added event: Simple NPC at (10, 5)
 ## 📜 Changelog
 
 ### Version 1.3 - Complete Edition
+
 - **🔧 MAJOR FIX:** Corrected all Move Command codes (they were completely wrong!)
   - `MOVE_UP` was 1, now correctly 4
   - `THROUGH_ON` was 42, now correctly 37
@@ -480,6 +572,7 @@ Added event: Simple NPC at (10, 5)
 - ✅ Full compatibility with RMXP Event Exporter verified
 
 ### Version 1.2
+
 - Added 50+ RMXP event commands
 - Added CHANGE_SCREEN_TONE for color tinting
 - Added screen effects (shake, flash, fade)
@@ -488,6 +581,7 @@ Added event: Simple NPC at (10, 5)
 - Added menu/system access controls
 
 ### Version 1.1
+
 - Added multiple event pages (NEW_PAGE)
 - Added page conditions (switch, self switch, variable)
 - Added self switches (A, B, C, D)
@@ -496,6 +590,7 @@ Added event: Simple NPC at (10, 5)
 - Added choices and conditionals
 
 ### Version 1.0
+
 - Initial release
 - Basic event creation from text files
 - TEXT, SCRIPT, SWITCH commands
@@ -505,6 +600,7 @@ Added event: Simple NPC at (10, 5)
 ## 📖 More Examples
 
 See `EventImporter/advanced_examples.txt.bak` for **15 complex example events** including:
+
 - Multi-page quest NPCs
 - Door events with followers
 - Treasure chests with state
@@ -522,10 +618,10 @@ Rename the file to `.txt` to import them all!
 
 **Created for:** Pokemon Essentials v21.1  
 **Compatible with:** RMXP Event Exporter plugin  
-**Version:** 1.3  
+**Version:** 1.3
 
 ---
 
 **Happy Event Creating!** 🎮✨
 
-*Questions? Issues? Check the examples or create detailed events step-by-step!*
+_Questions? Issues? Check the examples or create detailed events step-by-step!_
