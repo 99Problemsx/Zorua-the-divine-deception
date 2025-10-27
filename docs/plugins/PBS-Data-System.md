@@ -21,9 +21,11 @@ Das PBS Data System ersetzt traditionelle PBS-Textdateien durch **Ruby-Klassen m
 Plugins/PBS Data System/
 ├── [000] Base Classes.rb     # DSL-Definitionen für alle Datentypen
 ├── [001] Loader.rb           # Auto-Loading System
+├── [002] Translation Helper.rb # Übersetzungs-Hilfsfunktionen
 ├── [009] Compiler Override.rb # Verhindert PBS-Kompilierung
 ├── [010] DBK Compiler Override.rb # DBK-Kompatibilität
 ├── [AAA] Early Override.rb   # Early-Loading Patch
+├── _TRANSLATION_EXAMPLES.rb  # Übersetzungsbeispiele
 └── meta.txt                  # Plugin-Metadaten
 
 PBS/Data/
@@ -451,6 +453,239 @@ Data::Species.register(:BULBASAUR) do
   # ...
 end
 ```
+
+---
+
+## 🌍 Übersetzungssystem
+
+Das PBS Data System enthält ein umfassendes Übersetzungssystem für mehrsprachige Unterstützung.
+
+### Grundlagen
+
+```ruby
+# Traditionelle Methode mit _INTL()
+GameData::Type.register(:FIRE) do
+  name _INTL("Feuer")  # Deutsch: "Feuer", Englisch: "Fire"
+end
+
+# Kürzer mit t() Helper
+GameData::Type.register(:WATER) do
+  name t("Wasser")
+end
+```
+
+### Translation Helper Funktionen
+
+#### 1. Einfache Übersetzung
+
+```ruby
+# t() - Kurzer Alias für _INTL()
+name t("Pikachu")
+description t("Ein elektrisches Maus-Pokémon")
+
+# intl() - Direkter _INTL Alias
+name intl("Pikachu")
+```
+
+#### 2. Übersetzung mit Kontext
+
+```ruby
+# translate_with_context() - Fügt Präfix hinzu
+translate_with_context("TYPE", "Fire")  # "TYPE_FIRE"
+translate_with_context("MOVE", "Tackle")  # "MOVE_TACKLE"
+```
+
+#### 3. Plural-Formen
+
+```ruby
+# plural_t() - Automatische Pluralisierung
+item_name = plural_t("Berry", 1)   # "Berry"
+item_name = plural_t("Berry", 5)   # "Berries"
+
+# In Item-Definitionen
+GameData::Item.register(:POTION) do
+  name t("Trank")
+  plural_name plural_t("Trank", 2)  # "Tränke"
+end
+```
+
+#### 4. Gender-spezifische Übersetzungen
+
+```ruby
+# gender_t() - Geschlechtsspezifische Namen
+GameData::TrainerType.register(:AROMALADYM) do
+  name gender_t("Aroma-Dame", gender: :female)
+end
+
+GameData::TrainerType.register(:GUITARIST) do
+  name gender_t("Gitarrist", gender: :male)
+end
+```
+
+#### 5. Formatierte Übersetzungen
+
+```ruby
+# format_t() - Text mit Platzhaltern
+format_t("Du hast {1} {2} erhalten!", 5, "Beeren")
+# Output: "Du hast 5 Beeren erhalten!"
+
+# In Pokédex-Einträgen
+pokedex_entry format_t(
+  "{1} kann Temperatur von bis zu {2} Grad erreichen!",
+  "Glutexo", 3000
+)
+```
+
+#### 6. Convenience-Funktionen
+
+```ruby
+# Spezifische Name-Helper
+type_name(:FIRE)        # "Feuer"
+move_name(:TACKLE)      # "Tackle"
+item_name(:POTION)      # "Trank"
+species_name(:PIKACHU)  # "Pikachu"
+ability_name(:BLAZE)    # "Großbrand"
+```
+
+### Vollständiges Beispiel
+
+```ruby
+Data::Species.register(:GLUMANDA) do
+  # Namen mit Übersetzung
+  name t("Glumanda")  # DE: "Glumanda", EN: "Charmander"
+
+  type1 :FIRE
+  type2 nil
+
+  base_stats hp: 39, attack: 52, defense: 43,
+             special_attack: 60, special_defense: 50, speed: 65
+
+  evs special_attack: 1
+
+  abilities :BLAZE
+  hidden_ability :SOLAR_POWER
+
+  growth_rate :MEDIUM_SLOW
+  gender_ratio :FEMALE_12_5_PERCENT
+  catch_rate 45
+  happiness 70
+
+  egg_groups :MONSTER, :DRAGON
+  hatch_steps 5120
+
+  height 0.6   # Meter
+  weight 8.5   # Kilogramm
+
+  color :RED
+  shape :UPRIGHT
+  habitat :MOUNTAIN
+  generation 1
+
+  # Pokédex-Eintrag mit Übersetzung
+  pokedex_entry t(
+    "Die Flamme auf seiner Schweifspitze zeigt seine Gefühlslage an. " +
+    "Sie flackert, wenn Glumanda glücklich ist."
+  )
+
+  # Evolution
+  evolution [:GLUTEXO, :Level, 16]
+
+  # Moves
+  moves [
+    [1, :SCRATCH],
+    [1, :GROWL],
+    [7, :EMBER],
+    [13, :SMOKESCREEN]
+  ]
+end
+```
+
+### UTF-8 und Umlaute
+
+Das System unterstützt vollständig deutsche Umlaute:
+
+```ruby
+# ✅ Korrekt: Umlaute direkt verwenden
+name t("Bisasam")
+description t("Ein Pokémon mit einer Zwiebel auf dem Rücken")
+pokedex_entry t("Für größere Attacken muss es über längere Zeit Sonnenlicht absorbieren.")
+
+# UTF-8 Helper
+ensure_utf8("Pokémon")  # Stellt UTF-8 Encoding sicher
+
+# Fallback (nur wenn nötig)
+sanitize_text("Pokémon")  # -> "Pokemon" (ohne Umlaute)
+```
+
+### Best Practices
+
+```ruby
+# ✅ DO: Verwende t() oder _INTL() für alle sichtbaren Texte
+name t("Pikachu")
+description t("Ein elektrisches Pokémon")
+
+# ✅ DO: Nutze gender_t() für geschlechtsspezifische Begriffe
+name gender_t("Trainer", gender: :male)
+
+# ✅ DO: Verwende plural_t() für Plural-Formen
+plural_name plural_t("Beere", 2)
+
+# ✅ DO: Trenne lange Texte mit +
+pokedex_entry t(
+  "Ein sehr langes Pokédex-Eintrag der über mehrere " +
+  "Zeilen geht und gut lesbar formatiert ist."
+)
+
+# ❌ DON'T: Hardcode Texte ohne Übersetzung
+name "Pikachu"  # Nicht übersetzbar!
+
+# ❌ DON'T: Verwende falsche Encoding
+name "Pok\xe9mon"  # Fehler bei UTF-8
+```
+
+### Übersetzungsdateien
+
+Übersetzungen werden in den Standard-Intl-Files gespeichert:
+
+```
+Data/Scripts/001_Technical/003_Intl_Messages.rb
+```
+
+Oder plugin-spezifisch:
+
+```
+Plugins/[PluginName]/intl_de.txt
+Plugins/[PluginName]/intl_en.txt
+```
+
+Beispiel `intl_de.txt`:
+
+```
+# Pokemon Namen
+PIKACHU_NAME = Pikachu
+CHARIZARD_NAME = Glurak
+
+# Typen
+FIRE_TYPE = Feuer
+WATER_TYPE = Wasser
+
+# Moves
+TACKLE_NAME = Tackle
+TACKLE_DESC = Eine normale physische Attacke
+
+# Items
+POTION_NAME = Trank
+POTION_PLURAL = Tränke
+POTION_DESC = Füllt die KP um 20 Punkte auf
+```
+
+### Siehe auch
+
+- `[002] Translation Helper.rb` - Vollständige Implementation
+- `_TRANSLATION_EXAMPLES.rb` - Umfangreiche Beispiele
+- [Intl System Docs](https://essentialsdocs.fandom.com/wiki/Intl) - Essentials Dokumentation
+
+---
 
 ## 📚 Ressourcen
 
