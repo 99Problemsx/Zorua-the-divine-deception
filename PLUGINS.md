@@ -2,7 +2,7 @@
 
 Auto-generated documentation for all installed plugins.
 
-Last updated: Mon Oct 27 20:21:24 UTC 2025
+Last updated: Mon Oct 27 21:01:16 UTC 2025
 
 
 ---
@@ -1260,7 +1260,7 @@ Based on Luka's templating philosophy: "I made an entire templating engine for e
 
 **Link**: https://github.com/99Problemsx/Zorua-the-divine-deception
 
-**Files**: 10 Ruby files
+**Files**: 11 Ruby files
 
 ### Description
 
@@ -2947,7 +2947,7 @@ pbAddChimneySmoke(:purple_house_smoke, 43, 260, 512, "smoke", true)
 
 **Link**: no
 
-**Files**: 5 Ruby files
+**Files**: 1 Ruby files
 
 
 ---
