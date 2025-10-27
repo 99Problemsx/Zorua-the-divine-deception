@@ -183,6 +183,8 @@ module Data
       end
       
       def get(item_id)
+        # If already a GameData object, return it directly
+        return item_id if item_id.is_a?(self)
         return @registry[item_id] if @registry[item_id]
         return @registry_by_symbol[item_id.to_sym] if @registry_by_symbol[item_id.to_sym]
         nil
