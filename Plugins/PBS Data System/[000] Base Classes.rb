@@ -74,6 +74,7 @@ module Data
     def egg_moves(*values); @egg_moves = values; end
     def tutor_moves(*values); @tutor_moves = values; end
     def evolution(value); @evolution = value; end
+    def evolutions(value); @evolution = value; end  # Alias for evolution
     def base_exp(value); @base_exp = value; end
     def growth_rate(value); @growth_rate = value; end
     def gender_ratio(value); @gender_ratio = value; end

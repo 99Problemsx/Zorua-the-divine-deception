@@ -20,12 +20,12 @@ module PBSDataSystem
     load_misc
     
     puts "PBS Data System loaded:"
-    puts "  #{GameData::CustomSpecies.registry.size} Pokemon"
-    puts "  #{GameData::CustomMove.registry.size} Moves"
-    puts "  #{GameData::CustomItem.registry.size} Items"
-    puts "  #{GameData::CustomAbility.registry.size} Abilities"
-    puts "  #{GameData::CustomType.registry.size} Types"
-    puts "  #{GameData::CustomTrainerType.registry.size} Trainer Types"
+    puts "  #{Data::Species.registry.size} Pokemon"
+    puts "  #{Data::Move.registry.size} Moves"
+    puts "  #{Data::Item.registry.size} Items"
+    puts "  #{Data::Ability.registry.size} Abilities"
+    puts "  #{Data::Type.registry.size} Types"
+    puts "  #{Data::TrainerType.registry.size} Trainer Types"
   end
   
   def self.load_pokemon

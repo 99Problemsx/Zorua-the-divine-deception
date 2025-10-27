@@ -1,14 +1,14 @@
-# 🎮 Welcome to Pokemon Essentials v21.1 Wiki
+# 🦊 Pokémon Zorua - The Divine Deception Wiki
 
 <div align="center">
 
 ![Pokemon Essentials](https://img.shields.io/badge/Pokemon%20Essentials-v21.1-red?style=for-the-badge)
+![Hotfixes](https://img.shields.io/badge/Hotfixes-1.0.9-orange?style=for-the-badge)
 ![Ruby](https://img.shields.io/badge/Ruby-3.1+-CC342D?style=for-the-badge&logo=ruby)
-![CI/CD](https://img.shields.io/badge/CI%2FCD-Automated-green?style=for-the-badge)
 
-**A fully automated Pokemon Essentials project with enterprise-grade CI/CD pipeline**
+**Eine epische Pokémon-Reise voller Täuschungen, Geheimnisse und göttlicher Kräfte**
 
-[🚀 Quick Start](#quick-start) • [📚 Documentation](https://99problemsx.github.io/test-stuff/) • [📥 Download](https://github.com/99Problemsx/test-stuff/releases/latest) • [🐛 Report Bug](https://github.com/99Problemsx/test-stuff/issues)
+[� Story](#-story) • [🌍 Region](#-region) • [🎮 Features](#-features) • [⚔️ Gameplay](#%EF%B8%8F-gameplay) • [🎯 Guides](#-guides)
 
 </div>
 
@@ -16,138 +16,218 @@
 
 ## 📖 Wiki Navigation
 
-### For Players
-- 🎮 **[Installation Guide](Installation-Guide)** - How to download and play
-- 🎯 **[Gameplay Features](Gameplay-Features)** - What's in the game
-- ❓ **[FAQ](FAQ)** - Frequently Asked Questions
-- 🐛 **[Troubleshooting](Troubleshooting)** - Common issues and solutions
+### 📚 Story & World
 
-### For Developers
-- 🔧 **[Development Setup](Development-Setup)** - Setting up your dev environment
-- 🤖 **[CI/CD Pipeline](CI-CD-Pipeline)** - Understanding our automation
-- 📝 **[Contributing Guide](Contributing)** - How to contribute
-- 🏗️ **[Project Structure](Project-Structure)** - Understanding the codebase
+- 📜 **[Story Overview](Story-Overview)** - Die Hauptgeschichte und Handlung
+- 👥 **[Characters](Characters)** - Protagonisten, Rivalen, und wichtige NPCs
+- 🌍 **[Region & Cities](Region-Cities)** - Entdecke die Welt von Zorua
+- 🏛️ **[Lore & Mythology](Lore-Mythology)** - Legenden und göttliche Geheimnisse
+- 🗺️ **[Locations](Locations)** - Wichtige Orte und Sehenswürdigkeiten
 
-### Advanced Topics
-- 🔌 **[Plugin System](Plugin-System)** - Working with plugins
-- 📊 **[PBS Files](PBS-Files)** - Pokemon data files
-- 🌐 **[Localization](Localization)** - Translation system
-- 🎨 **[Custom Graphics](Custom-Graphics)** - Adding new sprites
+### ⚔️ Gameplay
+
+- 🎮 **[Getting Started](Getting-Started)** - So startest du dein Abenteuer
+- ⚔️ **[Battle System](Battle-System)** - Kämpfe, Raids, Dynamax & mehr
+- 🎯 **[Gym Leaders](Gym-Leaders)** - Alle Arenaleiter und ihre Teams
+- 👑 **[Elite Four & Champion](Elite-Four-Champion)** - Die ultimative Herausforderung
+- 🏆 **[Battle Facilities](Battle-Facilities)** - Post-Game Kämpfe
+- � **[Side Quests](Side-Quests)** - Nebenquests und versteckte Events
+
+### 🦋 Pokémon
+
+- � **[Pokédex](Pokedex)** - Alle verfügbaren Pokémon (Gen 1-9)
+- ✨ **[New Forms](New-Forms)** - Regionale Formen und Varianten
+- � **[Shiny Hunting](Shiny-Hunting)** - Tipps für Shiny-Jäger
+- 🧬 **[Breeding Guide](Breeding-Guide)** - Zucht und IVs/EVs
+- 💪 **[Competitive Guide](Competitive-Guide)** - Teambuilding für Fortgeschrittene
+
+### 🎯 Features
+
+- 🌟 **[Unique Features](Unique-Features)** - Was macht dieses Spiel besonders?
+- ⚡ **[Dynamax & Gigantamax](Dynamax-System)** - Alles über Dynamax
+- 💎 **[Terastallization](Terastallization)** - Das Terastal-Phänomen
+- 🌊 **[Z-Moves](Z-Moves)** - Spezialattacken aus Alola
+- 🎤 **[Sound Type](Sound-Type)** - Der neue Sound-Typ
+- 🌪️ **[Weather & Seasons](Weather-Seasons)** - Wetter und Jahreszeiten
+
+### 🛠️ Technical
+
+- 🔧 **[Installation](Installation)** - Spiel installieren und starten
+- 🐛 **[Troubleshooting](Troubleshooting)** - Probleme beheben
+- ⚙️ **[Settings & Options](Settings-Options)** - Konfiguration
+- 📝 **[FAQ](FAQ)** - Häufig gestellte Fragen
+- 💾 **[Save Files](Save-Files)** - Speicherstände verwalten
+
+### 👨‍💻 Development
+
+- 🏗️ **[Development Setup](Development-Setup)** - Entwicklungsumgebung
+- 🔌 **[Plugin System](Plugin-System)** - PBS Data System & Plugins
+- 📊 **[PBS Files](PBS-Files)** - Pokemon Daten bearbeiten
+- 🎨 **[Graphics Guide](Graphics-Guide)** - Sprites und Grafiken
+- 🤝 **[Contributing](Contributing)** - Zum Projekt beitragen
+- 📚 **[Technical Docs](../docs/Home.md)** - Ausführliche Entwicklerdokumentation
+
+---
+
+## 🎮 Über das Spiel
+
+**Pokémon Zorua - The Divine Deception** ist ein umfangreiches Pokémon Fan-Game basierend auf **Pokémon Essentials v21.1** mit Hotfixes 1.0.9. Das Spiel bietet eine einzigartige Story über Täuschungen, göttliche Kräfte und die wahre Natur der Realität.
+
+### 🌟 Hauptmerkmale
+
+#### 🎮 Gameplay Features
+
+- **Alle Pokémon Gen 1-9** - Vollständiger Pokédex mit über 1000 Pokémon
+- **Deluxe Battle Kit** - Raid Battles, Dynamax, Z-Moves, Terastallization
+- **Sound Type** - Komplett neuer Typ mit voller Battle-Integration
+- **Advanced Weather System** - Dynamisches Wetter mit Gameplay-Effekten
+- **Interaktive Events** - Entscheidungen die die Story beeinflussen
+- **Post-Game Content** - Umfangreiche Inhalte nach der Story
+
+#### ⚔️ Battle Features
+
+- **Raid Battles** - Kooperative Kämpfe gegen mächtige Pokémon
+- **Dynamax & Gigantamax** - Verwandle deine Pokémon in Giganten
+- **Z-Moves** - Mächtige Spezialattacken
+- **Terastallization** - Ändere den Typ deiner Pokémon im Kampf
+- **Advanced AI** - Intelligente Gegner mit realistischen Strategien
+- **Online Battles** - Kämpfe gegen andere Spieler (geplant)
+
+#### 🌍 World Features
+
+- **Riesige Region** - Mehrere Städte, Routen und Dungeons
+- **Day/Night Cycle** - Echter Tag/Nacht-Zyklus
+- **Dynamic Weather** - Wetter beeinflusst wilde Pokémon
+- **Hidden Grottos** - Versteckte Orte mit seltenen Pokémon
+- **Secret Bases** - Personalisiere deinen eigenen Ort
+- **Mini-Games** - Pokéathlon, Contests, und mehr
+
+#### 🎭 Story Features
+
+- **Epische Story** - Über 40 Stunden Spielzeit
+- **Komplexe Charaktere** - Tiefgründige NPCs mit eigenen Motivationen
+- **Multiple Endings** - Deine Entscheidungen haben Konsequenzen
+- **Mythology System** - Entdecke uralte Legenden
+- **Divine Powers** - Geheimnisvolle göttliche Kräfte
+- **Plot Twists** - Nichts ist wie es scheint
+
+### 🏗️ Technical Features
+
+#### 🔌 Plugin System
+
+- **PBS Data System** - Fortgeschrittene Daten-Verwaltung
+- **Modular Architecture** - Über 50+ Plugins
+- **Custom Scripts** - Erweiterte Scripting-Möglichkeiten
+- **Auto-Generation** - Automatische Compiler für 33+ .dat Files
+
+#### 🌐 Localization
+
+- **Vollständige Deutsche Übersetzung**
+- **UTF-8 Support** - Umlaute und Sonderzeichen
+- **Multi-Language Support** - Erweiterbar auf weitere Sprachen
 
 ---
 
 ## 🚀 Quick Start
 
-### For Players
+### Für Spieler
 
-1. **Download the latest release**
-   ```
-   https://github.com/99Problemsx/test-stuff/releases/latest
-   ```
+1. **Download das Spiel**
 
-2. **Extract the ZIP file**
-   - Right-click → "Extract All"
-   - Choose a destination folder
+   - Gehe zu [Releases](https://github.com/99Problemsx/Zorua-the-divine-deception/releases)
+   - Lade die neueste Version herunter
 
-3. **Run the game**
-   - Double-click `Game.exe`
-   - Enjoy!
+2. **Installation**
 
-### For Developers
+   - Entpacke die ZIP-Datei
+   - Starte `Game.exe`
+   - Viel Spaß beim Spielen!
+
+3. **Erste Schritte**
+   - Lies den **[Getting Started Guide](Getting-Started)**
+   - Schau dir die **[Controls](Settings-Options)** an
+   - Beginne dein Abenteuer!
+
+### Für Entwickler
 
 ```bash
-# Clone the repository
-git clone https://github.com/99Problemsx/test-stuff.git
-cd test-stuff
+# Repository klonen
+git clone https://github.com/99Problemsx/Zorua-the-divine-deception.git
+cd Zorua-the-divine-deception
 
-# Make changes and commit
+# Änderungen machen
 git add .
-git commit -m "feat: Your amazing feature"
+git commit -m "feat: Deine Änderung"
 git push
-
-# Create a release (automatic!)
-git tag v1.0.5
-git push origin v1.0.5
 ```
 
----
-
-## ✨ Key Features
-
-### 🎮 Game Features
-- **Deluxe Battle Kit** - Raid Battles, Dynamax, Z-Moves, Terastallization
-- **Sound Type** - Custom type with full battle integration
-- **German Localization** - Complete UTF-8 translation system
-- **Custom PBS Entries** - Extended Pokemon data
-
-### 🤖 Automation Features
-- **17+ GitHub Actions Workflows** - Fully automated pipeline
-- **Dependabot Auto-Merge** - Dependencies always up-to-date
-- **Security Scanning** - Trivy + TruffleHog
-- **Code Quality** - RuboCop, Flog, Flay
-- **Automatic Releases** - Just push a tag!
-- **GitHub Pages** - Live documentation
-- **Weekly Backups** - Never lose your work
+Mehr Details im **[Development Setup Guide](Development-Setup)**.
 
 ---
 
-## 📊 Project Stats
+## � Project Status
 
+- **Engine**: Pokémon Essentials v21.1
+- **Hotfixes**: 1.0.9 (Official)
 - **Ruby Version**: 3.1+
-- **Essentials Version**: v21.1
-- **Hotfixes**: 1.0.9 (official)
+- **Development Stage**: Active Development
 - **Total Plugins**: 50+
-- **Total PBS Files**: 30+
-- **GitHub Actions**: 17 workflows
+- **Total Pokémon**: 1000+ (Gen 1-9)
 - **Lines of Code**: 100,000+
 
 ---
 
-## 🤝 Contributing
+## 🤝 Community
 
-We love contributions! Check out our **[Contributing Guide](Contributing)** to get started.
+### Links
 
-Quick overview:
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Write tests (if applicable)
-5. Submit a Pull Request
+- 🐛 **[Bug Reports](https://github.com/99Problemsx/Zorua-the-divine-deception/issues)** - Fehler melden
+- � **[Discussions](https://github.com/99Problemsx/Zorua-the-divine-deception/discussions)** - Community Diskussionen
+- 📚 **[Contributing Guide](Contributing)** - Zum Projekt beitragen
+- � **[Documentation](../docs/Home.md)** - Technische Dokumentation
 
-We use [Conventional Commits](https://www.conventionalcommits.org/) for automatic versioning!
+### Beitragen
 
----
+Wir freuen uns über jeden Beitrag! Ob Bug-Reports, Feature-Vorschläge oder Code - jeder kann helfen.
 
-## 📄 License
-
-Pokemon Essentials is developed by the community at [PokéCommunity](https://www.pokemoncommunity.com/).
-
-This project is for educational purposes only.
+Lies unseren **[Contributing Guide](Contributing)** für Details.
 
 ---
 
-## 🔗 Links
+## � Credits & License
 
-- 🌐 **Live Docs**: https://99problemsx.github.io/test-stuff/
-- 📦 **Releases**: https://github.com/99Problemsx/test-stuff/releases
-- 🐛 **Issues**: https://github.com/99Problemsx/test-stuff/issues
-- 💬 **Discussions**: https://github.com/99Problemsx/test-stuff/discussions
+### Credits
+
+- **Pokémon Essentials** - The Pokémon Essentials Team
+- **RPG Maker XP** - Enterbrain
+- **Pokémon** - Nintendo, Game Freak, Creatures Inc.
+- **Community Plugins** - Diverse Plugin-Entwickler
+
+### License
+
+Dieses Projekt ist ein nicht-kommerzielles Fan-Game für Bildungszwecke.
+
+Alle Pokémon-Rechte gehören Nintendo, Game Freak und Creatures Inc.
 
 ---
 
-## 💡 Need Help?
+## 💡 Support
 
-- Check the **[FAQ](FAQ)** first
-- Read the **[Troubleshooting Guide](Troubleshooting)**
-- Search existing **[Issues](https://github.com/99Problemsx/test-stuff/issues)**
-- Create a new issue if needed
+Brauchst du Hilfe?
+
+1. **[FAQ](FAQ)** - Häufig gestellte Fragen
+2. **[Troubleshooting](Troubleshooting)** - Probleme lösen
+3. **[Issues](https://github.com/99Problemsx/Zorua-the-divine-deception/issues)** - Problem melden
+4. **[Discussions](https://github.com/99Problemsx/Zorua-the-divine-deception/discussions)** - Community fragen
 
 ---
 
 <div align="center">
 
-**Made with ❤️ using Pokemon Essentials v21.1**
+**🦊 Made with ❤️ and Illusions 🦊**
 
-[⬆ Back to Top](#-welcome-to-pokemon-essentials-v211-wiki)
+_"Nichts ist wie es scheint... The Divine Deception awaits."_
+
+[⬆ Back to Top](#-pokémon-zorua---the-divine-deception-wiki)
 
 </div>

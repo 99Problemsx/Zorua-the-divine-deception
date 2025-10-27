@@ -2183,3 +2183,511 @@ Backtrace:
 033:Interpreter:138:in `execute_script'
 034:Interpreter_Commands:1177:in `command_355'
 034:Interpreter_Commands:116:in `execute_command'
+
+=================
+
+[2025-10-26 21:23:39 +0100]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: NameError
+Message: uninitialized constant GameData::LightEffect::RX_Data
+
+Backtrace:
+[Dynamic Lighting System] [001] GameData.rb:73:in `save'
+[Dynamic Lighting System] [001] GameData.rb:85:in `add'
+[Dynamic Lighting System] [005] Debug_Tools.rb:36:in `block in <main>'
+036:Event_HandlerCollections:121:in `call'
+385:Debug_Menus:138:in `block in pbDebugMenu'
+385:Debug_Menus:100:in `loop'
+385:Debug_Menus:100:in `pbDebugMenu'
+[Challenge Modes] 005_Capture Rules.rb:215:in `pbDebugMenu'
+293:UI_PauseMenu:297:in `block (2 levels) in <main>'
+079:MessageConfig:575:in `pbFadeOutIn'
+
+=================
+
+[2025-10-27 00:41:17 +0100]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: ArgumentError
+Message: wrong number of arguments (given 2, expected 1)
+
+Backtrace:
+[Wind Animation System] Wind.rb:88:in `initialize'
+[Wind Animation System] WindManager.rb:40:in `new'
+[Wind Animation System] WindManager.rb:40:in `spawn_particle'
+[Wind Animation System] WindManager.rb:28:in `update'
+[Wind Animation System] Integration.rb:19:in `update'
+[Boon's Phenomena] 002_EventHandlers.rb:95:in `update'
+032:Scene_Map:151:in `block in updateSpritesets'
+032:Scene_Map:149:in `each'
+032:Scene_Map:149:in `updateSpritesets'
+[Advanced Items - Field Moves] 10_Overwrites.rb:43:in `update'
+
+=================
+
+[2025-10-27 00:42:21 +0100]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: ArgumentError
+Message: wrong number of arguments (given 2, expected 1)
+
+Backtrace:
+[Wind Animation System] Wind.rb:88:in `initialize'
+[Wind Animation System] WindManager.rb:40:in `new'
+[Wind Animation System] WindManager.rb:40:in `spawn_particle'
+[Wind Animation System] WindManager.rb:28:in `update'
+[Wind Animation System] Integration.rb:19:in `update'
+[Boon's Phenomena] 002_EventHandlers.rb:95:in `update'
+032:Scene_Map:151:in `block in updateSpritesets'
+032:Scene_Map:149:in `each'
+032:Scene_Map:149:in `updateSpritesets'
+[Advanced Items - Field Moves] 10_Overwrites.rb:43:in `update'
+
+=================
+
+[2025-10-27 00:43:51 +0100]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: ArgumentError
+Message: wrong number of arguments (given 2, expected 1)
+
+Backtrace:
+[Wind Animation System] Wind.rb:88:in `initialize'
+[Wind Animation System] WindManager.rb:40:in `new'
+[Wind Animation System] WindManager.rb:40:in `spawn_particle'
+[Wind Animation System] WindManager.rb:28:in `update'
+[Wind Animation System] Integration.rb:19:in `update'
+[Boon's Phenomena] 002_EventHandlers.rb:95:in `update'
+032:Scene_Map:151:in `block in updateSpritesets'
+032:Scene_Map:149:in `each'
+032:Scene_Map:149:in `updateSpritesets'
+[Advanced Items - Field Moves] 10_Overwrites.rb:43:in `update'
+
+=================
+
+[2025-10-27 00:46:33 +0100]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: ArgumentError
+Message: wrong number of arguments (given 2, expected 1)
+
+Backtrace:
+[Wind Animation System] Wind.rb:20:in `initialize'
+[Wind Animation System] WindManager.rb:40:in `new'
+[Wind Animation System] WindManager.rb:40:in `spawn_particle'
+[Wind Animation System] WindManager.rb:28:in `update'
+[Wind Animation System] Integration.rb:19:in `update'
+[Boon's Phenomena] 002_EventHandlers.rb:95:in `update'
+032:Scene_Map:151:in `block in updateSpritesets'
+032:Scene_Map:149:in `each'
+032:Scene_Map:149:in `updateSpritesets'
+[Advanced Items - Field Moves] 10_Overwrites.rb:43:in `update'
+
+=================
+
+[2025-10-27 00:47:55 +0100]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: ArgumentError
+Message: wrong number of arguments (given 2, expected 1)
+
+Backtrace:
+[Wind Animation System] Wind.rb:61:in `initialize'
+[Wind Animation System] WindManager.rb:40:in `new'
+[Wind Animation System] WindManager.rb:40:in `spawn_particle'
+[Wind Animation System] WindManager.rb:28:in `update'
+[Wind Animation System] Integration.rb:19:in `update'
+[Boon's Phenomena] 002_EventHandlers.rb:95:in `update'
+032:Scene_Map:151:in `block in updateSpritesets'
+032:Scene_Map:149:in `each'
+032:Scene_Map:149:in `updateSpritesets'
+[Advanced Items - Field Moves] 10_Overwrites.rb:43:in `update'
+
+=================
+
+[2025-10-27 00:49:42 +0100]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: ArgumentError
+Message: wrong number of arguments (given 2, expected 1)
+
+Backtrace:
+[Wind Animation System] Wind.rb:88:in `initialize'
+[Wind Animation System] WindManager.rb:40:in `new'
+[Wind Animation System] WindManager.rb:40:in `spawn_particle'
+[Wind Animation System] WindManager.rb:28:in `update'
+[Wind Animation System] Integration.rb:19:in `update'
+[Boon's Phenomena] 002_EventHandlers.rb:95:in `update'
+032:Scene_Map:151:in `block in updateSpritesets'
+032:Scene_Map:149:in `each'
+032:Scene_Map:149:in `updateSpritesets'
+[Advanced Items - Field Moves] 10_Overwrites.rb:43:in `update'
+
+=================
+
+[2025-10-27 00:50:35 +0100]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: ArgumentError
+Message: wrong number of arguments (given 2, expected 1)
+
+Backtrace:
+[Wind Animation System] Wind.rb:88:in `initialize'
+[Wind Animation System] WindManager.rb:40:in `new'
+[Wind Animation System] WindManager.rb:40:in `spawn_particle'
+[Wind Animation System] WindManager.rb:28:in `update'
+[Wind Animation System] Integration.rb:19:in `update'
+[Boon's Phenomena] 002_EventHandlers.rb:95:in `update'
+032:Scene_Map:151:in `block in updateSpritesets'
+032:Scene_Map:149:in `each'
+032:Scene_Map:149:in `updateSpritesets'
+[Advanced Items - Field Moves] 10_Overwrites.rb:43:in `update'
+
+=================
+
+[2025-10-27 01:02:08 +0100]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: Errno::ENOENT
+Message: File Data/berry_plants.dat not found.
+
+Backtrace:
+100:GameData:139:in `load_data'
+100:GameData:139:in `load'
+100:GameData:251:in `block in load_all'
+100:GameData:249:in `each'
+100:GameData:249:in `load_all'
+031:StartGame:12:in `initialize'
+401:Main:30:in `mainFunctionDebug'
+401:Main:18:in `block in mainFunction'
+014:Errors:80:in `pbCriticalCode'
+401:Main:18:in `mainFunction'
+
+=================
+
+[2025-10-27 01:02:40 +0100]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: Errno::ENOENT
+Message: File Data/berry_plants.dat not found.
+
+Backtrace:
+100:GameData:139:in `load_data'
+100:GameData:139:in `load'
+100:GameData:251:in `block in load_all'
+100:GameData:249:in `each'
+100:GameData:249:in `load_all'
+031:StartGame:12:in `initialize'
+401:Main:30:in `mainFunctionDebug'
+401:Main:18:in `block in mainFunction'
+014:Errors:80:in `pbCriticalCode'
+401:Main:18:in `mainFunction'
+
+=================
+
+[2025-10-27 01:04:12 +0100]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: Errno::ENOENT
+Message: File Data/trainer_types.dat not found.
+
+Backtrace:
+100:GameData:139:in `load_data'
+100:GameData:139:in `load'
+100:GameData:251:in `block in load_all'
+100:GameData:249:in `each'
+100:GameData:249:in `load_all'
+031:StartGame:12:in `initialize'
+401:Main:30:in `mainFunctionDebug'
+401:Main:18:in `block in mainFunction'
+014:Errors:80:in `pbCriticalCode'
+401:Main:18:in `mainFunction'
+
+=================
+
+[2025-10-27 01:05:02 +0100]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: Errno::ENOENT
+Message: File Data/dungeon_parameters.dat not found.
+
+Backtrace:
+100:GameData:139:in `load_data'
+100:GameData:139:in `load'
+100:GameData:251:in `block in load_all'
+100:GameData:249:in `each'
+100:GameData:249:in `load_all'
+031:StartGame:12:in `initialize'
+401:Main:30:in `mainFunctionDebug'
+401:Main:18:in `block in mainFunction'
+014:Errors:80:in `pbCriticalCode'
+401:Main:18:in `mainFunction'
+
+=================
+
+[2025-10-27 01:05:44 +0100]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: Errno::ENOENT
+Message: File Data/player_metadata.dat not found.
+
+Backtrace:
+100:GameData:204:in `load_data'
+100:GameData:204:in `load'
+100:GameData:251:in `block in load_all'
+100:GameData:249:in `each'
+100:GameData:249:in `load_all'
+031:StartGame:12:in `initialize'
+401:Main:30:in `mainFunctionDebug'
+401:Main:18:in `block in mainFunction'
+014:Errors:80:in `pbCriticalCode'
+401:Main:18:in `mainFunction'
+
+=================
+
+[2025-10-27 01:06:59 +0100]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: Errno::ENOENT
+Message: File Data/player_metadata.dat not found.
+
+Backtrace:
+100:GameData:204:in `load_data'
+100:GameData:204:in `load'
+100:GameData:251:in `block in load_all'
+100:GameData:249:in `each'
+100:GameData:249:in `load_all'
+031:StartGame:12:in `initialize'
+401:Main:30:in `mainFunctionDebug'
+401:Main:18:in `block in mainFunction'
+014:Errors:80:in `pbCriticalCode'
+401:Main:18:in `mainFunction'
+
+=================
+
+[2025-10-27 01:07:46 +0100]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: Errno::ENOENT
+Message: File Data/player_metadata.dat not found.
+
+Backtrace:
+100:GameData:204:in `load_data'
+100:GameData:204:in `load'
+100:GameData:251:in `block in load_all'
+100:GameData:249:in `each'
+100:GameData:249:in `load_all'
+031:StartGame:12:in `initialize'
+401:Main:30:in `mainFunctionDebug'
+401:Main:18:in `block in mainFunction'
+014:Errors:80:in `pbCriticalCode'
+401:Main:18:in `mainFunction'
+
+=================
+
+[2025-10-27 01:12:28 +0100]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: Errno::ENOENT
+Message: File Data/player_metadata.dat not found.
+
+Backtrace:
+100:GameData:204:in `load_data'
+100:GameData:204:in `load'
+100:GameData:251:in `block in load_all'
+100:GameData:249:in `each'
+100:GameData:249:in `load_all'
+031:StartGame:12:in `initialize'
+401:Main:30:in `mainFunctionDebug'
+401:Main:18:in `block in mainFunction'
+014:Errors:80:in `pbCriticalCode'
+401:Main:18:in `mainFunction'
+
+=================
+
+[2025-10-27 01:13:24 +0100]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: Errno::ENOENT
+Message: File Data/ribbons.dat not found.
+
+Backtrace:
+100:GameData:139:in `load_data'
+100:GameData:139:in `load'
+100:GameData:251:in `block in load_all'
+100:GameData:249:in `each'
+100:GameData:249:in `load_all'
+031:StartGame:12:in `initialize'
+401:Main:30:in `mainFunctionDebug'
+401:Main:18:in `block in mainFunction'
+014:Errors:80:in `pbCriticalCode'
+401:Main:18:in `mainFunction'
+
+=================
+
+[2025-10-27 01:14:26 +0100]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: Errno::ENOENT
+Message: File Data/map_metadata.dat not found.
+
+Backtrace:
+100:GameData:204:in `load_data'
+100:GameData:204:in `load'
+100:GameData:251:in `block in load_all'
+100:GameData:249:in `each'
+100:GameData:249:in `load_all'
+031:StartGame:12:in `initialize'
+401:Main:30:in `mainFunctionDebug'
+401:Main:18:in `block in mainFunction'
+014:Errors:80:in `pbCriticalCode'
+401:Main:18:in `mainFunction'
+
+=================
+
+[2025-10-27 01:16:04 +0100]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: Errno::ENOENT
+Message: File Data/adventure_maps.dat not found.
+
+Backtrace:
+100:GameData:204:in `load_data'
+100:GameData:204:in `load'
+100:GameData:251:in `block in load_all'
+100:GameData:249:in `each'
+100:GameData:249:in `load_all'
+031:StartGame:12:in `initialize'
+401:Main:30:in `mainFunctionDebug'
+401:Main:18:in `block in mainFunction'
+014:Errors:80:in `pbCriticalCode'
+401:Main:18:in `mainFunction'
+
+=================
+
+[2025-10-27 01:16:48 +0100]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Exception: NoMethodError
+Message: undefined method `trainer_type' for nil:NilClass
+
+Backtrace:
+289:Player:73:in `trainer_type'
+286:Trainer:48:in `male?'
+305:UI_Load:78:in `refresh'
+305:UI_Load:26:in `initialize'
+305:UI_Load:109:in `new'
+305:UI_Load:109:in `block in pbStartScene'
+305:UI_Load:108:in `times'
+305:UI_Load:108:in `pbStartScene'
+[Auto Multi Save] Auto Multi Save.rb:284:in `block in pbStartLoadScreen'
+[Auto Multi Save] Auto Multi Save.rb:254:in `loop'
+
+=================
+
+[2025-10-27 01:19:12 +0100]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Error in Plugin: [PBS Data System]
+Exception: TypeError
+Message: no implicit conversion of Symbol into Integer
+
+Backtrace:
+100:GameData:84:in `[]'
+100:GameData:84:in `register'
+[PBS Data System] [010] Default Data.rb:9:in `<main>'
+008:PluginManager:635:in `eval'
+008:PluginManager:635:in `block (2 levels) in runPlugins'
+008:PluginManager:625:in `each'
+008:PluginManager:625:in `block in runPlugins'
+008:PluginManager:616:in `each'
+008:PluginManager:616:in `runPlugins'
+401:Main:28:in `mainFunctionDebug'
+
+=================
+
+[2025-10-27 01:25:17 +0100]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Error in Plugin: [PBS Data System]
+Exception: TypeError
+Message: no implicit conversion of Symbol into Integer
+
+Backtrace:
+100:GameData:84:in `[]'
+100:GameData:84:in `register'
+[PBS Data System] [010] Default Data.rb:9:in `<main>'
+008:PluginManager:635:in `eval'
+008:PluginManager:635:in `block (2 levels) in runPlugins'
+008:PluginManager:625:in `each'
+008:PluginManager:625:in `block in runPlugins'
+008:PluginManager:616:in `each'
+008:PluginManager:616:in `runPlugins'
+401:Main:28:in `mainFunctionDebug'
+
+=================
+
+[2025-10-27 01:26:24 +0100]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Error in Plugin: [PBS Data System]
+Exception: TypeError
+Message: no implicit conversion of Symbol into Integer
+
+Backtrace:
+100:GameData:84:in `[]'
+100:GameData:84:in `register'
+[PBS Data System] [010] Default Data.rb:9:in `<main>'
+008:PluginManager:635:in `eval'
+008:PluginManager:635:in `block (2 levels) in runPlugins'
+008:PluginManager:625:in `each'
+008:PluginManager:625:in `block in runPlugins'
+008:PluginManager:616:in `each'
+008:PluginManager:616:in `runPlugins'
+401:Main:28:in `mainFunctionDebug'
+
+=================
+
+[2025-10-27 01:27:35 +0100]
+[Pokémon Essentials version 21.1]
+[v21.1 Hotfixes 1.0.9]
+
+Error in Plugin: [PBS Data System]
+Exception: TypeError
+Message: no implicit conversion of Symbol into Integer
+
+Backtrace:
+100:GameData:84:in `[]'
+100:GameData:84:in `register'
+[PBS Data System] [010] Default Data.rb:9:in `<main>'
+008:PluginManager:635:in `eval'
+008:PluginManager:635:in `block (2 levels) in runPlugins'
+008:PluginManager:625:in `each'
+008:PluginManager:625:in `block in runPlugins'
+008:PluginManager:616:in `each'
+008:PluginManager:616:in `runPlugins'
+401:Main:28:in `mainFunctionDebug'
