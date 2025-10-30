@@ -2,7 +2,7 @@
 
 Auto-generated documentation for all installed plugins.
 
-Last updated: Mon Oct 27 23:24:42 UTC 2025
+Last updated: Thu Oct 30 18:57:11 UTC 2025
 
 
 ---
