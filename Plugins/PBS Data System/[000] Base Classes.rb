@@ -12,7 +12,7 @@ module Data
     @registry = {}
     @registry_by_symbol = {}
     
-    attr_reader :id, :name, :type1, :type2, :base_stats, :evs, :abilities,
+  attr_reader :id, :type1, :type2, :base_stats, :evs, :abilities,
                 :hidden_ability, :moves, :egg_moves, :tutor_moves,
                 :evolution, :base_exp, :growth_rate, :gender_ratio,
                 :catch_rate, :happiness, :egg_groups, :hatch_steps,
@@ -53,7 +53,13 @@ module Data
     end
     
     # DSL Methods
-    def name(value); @name = value; end
+    # Store original English text in @real_name and return translated
+    # version at runtime via MessageTypes when available.
+    def name(value); @real_name = value; end
+    def name
+      return nil if !defined?(@real_name) || @real_name.nil?
+      return MessageTypes.getFromHash(MessageTypes::SPECIES_NAMES, @real_name)
+    end
     def type1(value); @type1 = value; end
     def type2(value); @type2 = value; end
     def base_stats(hp:, attack:, defense:, special_attack:, special_defense:, speed:)
@@ -106,9 +112,9 @@ module Data
     @registry = {}
     @registry_by_symbol = {}
     
-    attr_reader :id, :name, :function_code, :base_damage, :type, :category,
-                :accuracy, :total_pp, :target, :priority, :flags, :description,
-                :effect_chance
+  attr_reader :id, :function_code, :base_damage, :type, :category,
+        :accuracy, :total_pp, :target, :priority, :flags, :description,
+        :effect_chance
     
     def initialize(move_id)
       @id = move_id
@@ -141,7 +147,11 @@ module Data
     end
     
     # DSL Methods
-    def name(value); @name = value; end
+    def name(value); @real_name = value; end
+    def name
+      return nil if !defined?(@real_name) || @real_name.nil?
+      return MessageTypes.getFromHash(MessageTypes::MOVE_NAMES, @real_name)
+    end
     def function_code(value); @function_code = value; end
     def base_damage(value); @base_damage = value; end
     def type(value); @type = value; end
@@ -162,9 +172,9 @@ module Data
     @registry = {}
     @registry_by_symbol = {}
     
-    attr_reader :id, :name, :name_plural, :pocket, :price, :sell_price,
-                :bp_price, :description, :field_use, :battle_use,
-                :flags, :consumable, :show_quantity
+  attr_reader :id, :name_plural, :pocket, :price, :sell_price,
+        :bp_price, :field_use, :battle_use,
+        :flags, :consumable, :show_quantity
     
     def initialize(item_id)
       @id = item_id
@@ -201,13 +211,21 @@ module Data
     end
     
     # DSL Methods
-    def name(value); @name = value; end
+    def name(value); @real_name = value; end
+    def name
+      return nil if !defined?(@real_name) || @real_name.nil?
+      return MessageTypes.getFromHash(MessageTypes::ITEM_NAMES, @real_name)
+    end
     def name_plural(value); @name_plural = value; end
     def pocket(value); @pocket = value; end
     def price(value); @price = value; end
     def sell_price(value); @sell_price = value; end
     def bp_price(value); @bp_price = value; end
     def description(value); @description = value; end
+    def description
+      return nil if !defined?(@description) || @description.nil?
+      return MessageTypes.getFromHash(MessageTypes::ITEM_DESCRIPTIONS, @description)
+    end
     def field_use(value); @field_use = value; end
     def battle_use(value); @battle_use = value; end
     def flags(*values); @flags = values; end
@@ -222,7 +240,7 @@ module Data
     @registry = {}
     @registry_by_symbol = {}
     
-    attr_reader :id, :name, :description, :flags
+  attr_reader :id, :description, :flags
     
     def initialize(ability_id)
       @id = ability_id
@@ -255,8 +273,16 @@ module Data
     end
     
     # DSL Methods
-    def name(value); @name = value; end
+    def name(value); @real_name = value; end
+    def name
+      return nil if !defined?(@real_name) || @real_name.nil?
+      return MessageTypes.getFromHash(MessageTypes::ABILITY_NAMES, @real_name)
+    end
     def description(value); @description = value; end
+    def description
+      return nil if !defined?(@description) || @description.nil?
+      return MessageTypes.getFromHash(MessageTypes::ABILITY_DESCRIPTIONS, @description)
+    end
     def flags(*values); @flags = values; end
   end
   
@@ -267,8 +293,8 @@ module Data
     @registry = {}
     @registry_by_symbol = {}
     
-    attr_reader :id, :name, :icon_position, :is_special, :weaknesses,
-                :resistances, :immunities, :pseudo_weather
+  attr_reader :id, :icon_position, :is_special, :weaknesses,
+        :resistances, :immunities, :pseudo_weather
     
     def initialize(type_id)
       @id = type_id
@@ -303,7 +329,11 @@ module Data
     end
     
     # DSL Methods
-    def name(value); @name = value; end
+    def name(value); @real_name = value; end
+    def name
+      return nil if !defined?(@real_name) || @real_name.nil?
+      return MessageTypes.getFromHash(MessageTypes::TYPE_NAMES, @real_name)
+    end
     def icon_position(value); @icon_position = value; end
     def is_special(value); @is_special = value; end
     def weaknesses(*values); @weaknesses = values; end
@@ -319,8 +349,8 @@ module Data
     @registry = {}
     @registry_by_symbol = {}
     
-    attr_reader :id, :name, :base_money, :battle_BGM, :victory_BGM,
-                :intro_ME, :gender, :skill_level, :skill_codes, :flags
+  attr_reader :id, :base_money, :battle_BGM, :victory_BGM,
+        :intro_ME, :gender, :skill_level, :skill_codes, :flags
     
     def initialize(trainer_type_id)
       @id = trainer_type_id
@@ -354,7 +384,11 @@ module Data
     end
     
     # DSL Methods
-    def name(value); @name = value; end
+    def name(value); @real_name = value; end
+    def name
+      return nil if !defined?(@real_name) || @real_name.nil?
+      return MessageTypes.getFromHash(MessageTypes::TRAINER_TYPE_NAMES, @real_name)
+    end
     def base_money(value); @base_money = value; end
     def battle_BGM(value); @battle_BGM = value; end
     def victory_BGM(value); @victory_BGM = value; end
@@ -399,6 +433,10 @@ module Data
     # DSL Methods
     def trainer_type(type); @trainer_type = type; end
     def name(n); @name = n; end
+    def name
+      return nil if !defined?(@name) || @name.nil?
+      return MessageTypes.getFromHash(MessageTypes::TRAINER_NAMES, @name)
+    end
     def version(v); @version = v; end
     def lose_text(text); @lose_text = text; end
     def intro_text(text); @intro_text = text; end
