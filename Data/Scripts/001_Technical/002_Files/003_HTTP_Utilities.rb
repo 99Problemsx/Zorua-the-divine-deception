@@ -62,7 +62,9 @@ end
 def pbDownloadToFile(url, file)
   begin
     pbDownloadData(url, file)
-  rescue
+  rescue => e
+    echoln("Failed to download from URL: #{url}") if $DEBUG
+    echoln("Error: #{e.message}") if $DEBUG
   end
 end
 
@@ -78,6 +80,8 @@ end
 def pbPostToFile(url, postdata, file)
   begin
     pbPostData(url, postdata, file)
-  rescue
+  rescue => e
+    echoln("Failed to post to URL: #{url}") if $DEBUG
+    echoln("Error: #{e.message}") if $DEBUG
   end
 end

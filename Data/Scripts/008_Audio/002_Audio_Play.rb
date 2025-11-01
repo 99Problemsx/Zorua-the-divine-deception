@@ -82,7 +82,9 @@ def pbBGMStop(timeInSeconds = 0.0)
     begin
       (timeInSeconds > 0.0) ? RPG::BGM.fade((timeInSeconds * 1000).floor) : RPG::BGM.stop
       return
-    rescue
+    rescue => e
+      echoln("BGM fade/stop failed, falling back to Audio module") if $DEBUG
+      echoln("Error: #{e.message}") if $DEBUG
     end
   end
   (timeInSeconds > 0.0) ? Audio.bgm_fade((timeInSeconds * 1000).floor) : Audio.bgm_stop
@@ -132,7 +134,9 @@ def pbMEStop(timeInSeconds = 0.0)
     begin
       (timeInSeconds > 0.0) ? RPG::ME.fade((timeInSeconds * 1000).floor) : RPG::ME.stop
       return
-    rescue
+    rescue => e
+      echoln("ME fade/stop failed, falling back to Audio module") if $DEBUG
+      echoln("Error: #{e.message}") if $DEBUG
     end
   end
   (timeInSeconds > 0.0) ? Audio.me_fade((timeInSeconds * 1000).floor) : Audio.me_stop
@@ -182,7 +186,9 @@ def pbBGSStop(timeInSeconds = 0.0)
     begin
       (timeInSeconds > 0.0) ? RPG::BGS.fade((timeInSeconds * 1000).floor) : RPG::BGS.stop
       return
-    rescue
+    rescue => e
+      echoln("BGS fade/stop failed, falling back to Audio module") if $DEBUG
+      echoln("Error: #{e.message}") if $DEBUG
     end
   end
   (timeInSeconds > 0.0) ? Audio.bgs_fade((timeInSeconds * 1000).floor) : Audio.bgs_stop
