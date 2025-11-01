@@ -480,7 +480,8 @@ class Battle::Scene
       if GameData::Move.exists?(:TACKLE)
         return pbFindMoveAnimDetails(move2anim, :TACKLE, idxUser)
       end
-    rescue
+    rescue => e
+      echoln("Error finding move animation: #{e.message}") if $DEBUG
     end
     return nil
   end
