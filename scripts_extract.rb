@@ -125,29 +125,37 @@ module Scripts
       title = title.strip
     end
     title = "unnamed" if !title || title.empty?
-    title.gsub!(/&bs;/, "\\")
-    title.gsub!(/&fs;/, "/")
-    title.gsub!(/&cn;/, ":")
-    title.gsub!(/&as;/, "*")
-    title.gsub!(/&qm;/, "?")
-    title.gsub!(/&dq;/, "\"")
-    title.gsub!(/&lt;/, "<")
-    title.gsub!(/&gt;/, ">")
-    title.gsub!(/&po;/, "|")
+    # Use a hash for more efficient replacements (performance optimization)
+    replacements = {
+      "&bs;" => "\\",
+      "&fs;" => "/",
+      "&cn;" => ":",
+      "&as;" => "*",
+      "&qm;" => "?",
+      "&dq;" => "\"",
+      "&lt;" => "<",
+      "&gt;" => ">",
+      "&po;" => "|"
+    }
+    replacements.each { |encoded, char| title.gsub!(encoded, char) }
     return title
   end
 
   def self.title_to_filename(title)
     filename = title.clone
-    filename.gsub!(/\\/, "&bs;")
-    filename.gsub!(/\//, "&fs;")
-    filename.gsub!(/:/, "&cn;")
-    filename.gsub!(/\*/, "&as;")
-    filename.gsub!(/\?/, "&qm;")
-    filename.gsub!(/"/, "&dq;")
-    filename.gsub!(/</, "&lt;")
-    filename.gsub!(/>/, "&gt;")
-    filename.gsub!(/\|/, "&po;")
+    # Use a hash for more efficient replacements (performance optimization)
+    replacements = {
+      '\\' => "&bs;",
+      '/' => "&fs;",
+      ':' => "&cn;",
+      '*' => "&as;",
+      '?' => "&qm;",
+      '"' => "&dq;",
+      '<' => "&lt;",
+      '>' => "&gt;",
+      '|' => "&po;"
+    }
+    replacements.each { |char, replacement| filename.gsub!(char, replacement) }
     return filename
   end
 
