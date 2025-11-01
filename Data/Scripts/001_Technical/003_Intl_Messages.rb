@@ -382,7 +382,8 @@ module Translator
       text_files = Dir.get("Text_" + dir_name, "*.txt")
       text_files.each { |file| compile_text_from_file(file, all_text) }
       Marshal.dump(all_text, outfile)
-    rescue
+    rescue => e
+      puts "Error compiling text from #{dir_name}: #{e.message}" if $DEBUG
       raise
     ensure
       outfile.close
@@ -397,7 +398,8 @@ module Translator
   def compile_text_from_file(text_file, all_text)
     begin
       file = File.open(text_file, "rb")
-    rescue
+    rescue => e
+      puts "Error opening text file '#{text_file}': #{e.message}" if $DEBUG
       raise _INTL("Can't find or open '{1}'.", text_file)
     end
     begin

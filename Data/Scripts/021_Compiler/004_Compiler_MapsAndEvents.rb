@@ -317,7 +317,8 @@ module Compiler
       begin
         @maps[mapID] = load_data(mapFilename(mapID))
         return @maps[mapID]
-      rescue
+      rescue => e
+        puts "Error loading map #{mapID}: #{e.message}" if $DEBUG
         return nil
       end
     end
@@ -348,7 +349,8 @@ module Compiler
     def getTilesetPassages(map, mapID)
       begin
         return @tilesets[map.tileset_id].passages
-      rescue
+      rescue => e
+        puts "Error getting tileset passages for tileset #{map.tileset_id} on map #{mapID}: #{e.message}" if $DEBUG
         raise "Tileset data for tileset number #{map.tileset_id} used on map #{mapID} was not found. " +
               "The tileset was likely deleted, but one or more maps still use it."
       end
@@ -357,7 +359,8 @@ module Compiler
     def getTilesetPriorities(map, mapID)
       begin
         return @tilesets[map.tileset_id].priorities
-      rescue
+      rescue => e
+        puts "Error getting tileset priorities for tileset #{map.tileset_id} on map #{mapID}: #{e.message}" if $DEBUG
         raise "Tileset data for tileset number #{map.tileset_id} used on map #{mapID} was not found. " +
               "The tileset was likely deleted, but one or more maps still use it."
       end

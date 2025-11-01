@@ -841,7 +841,8 @@ module Compiler
     begin
       mod = Object.const_get(mod) if mod.is_a?(Symbol)
       isDef = mod.const_defined?(item.to_sym)
-    rescue
+    rescue => e
+      puts "Error checking constant #{mod}::#{item}: #{e.message}" if $DEBUG
       raise sprintf(err, item)
     end
     raise sprintf(err, item) if !isDef

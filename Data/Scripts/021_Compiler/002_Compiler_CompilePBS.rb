@@ -1272,7 +1272,8 @@ module Compiler
     Console.echo_li(_INTL("Compiling animations..."))
     begin
       pbanims = load_data("Data/PkmnAnimations.rxdata")
-    rescue
+    rescue => e
+      puts "Error loading PkmnAnimations.rxdata, creating new: #{e.message}" if $DEBUG
       pbanims = PBAnimations.new
     end
     changed = false
