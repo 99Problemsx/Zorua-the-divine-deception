@@ -9,6 +9,31 @@ class Numeric
 end
 
 module Scripts
+  # Character replacement mappings (performance optimization - defined as constants)
+  TITLE_TO_FILENAME_REPLACEMENTS = {
+    '\\' => "&bs;",
+    '/' => "&fs;",
+    ':' => "&cn;",
+    '*' => "&as;",
+    '?' => "&qm;",
+    '"' => "&dq;",
+    '<' => "&lt;",
+    '>' => "&gt;",
+    '|' => "&po;"
+  }.freeze
+  
+  FILENAME_TO_TITLE_REPLACEMENTS = {
+    "&bs;" => "\\",
+    "&fs;" => "/",
+    "&cn;" => ":",
+    "&as;" => "*",
+    "&qm;" => "?",
+    "&dq;" => "\"",
+    "&lt;" => "<",
+    "&gt;" => ">",
+    "&po;" => "|"
+  }.freeze
+  
   def self.dump(path = "Data/Scripts", rxdata = "Data/Scripts.rxdata")
     scripts = File.open(rxdata, 'rb') { |f| Marshal.load(f) }
     if scripts.length < 10
@@ -125,29 +150,15 @@ module Scripts
       title = title.strip
     end
     title = "unnamed" if !title || title.empty?
-    title.gsub!(/&bs;/, "\\")
-    title.gsub!(/&fs;/, "/")
-    title.gsub!(/&cn;/, ":")
-    title.gsub!(/&as;/, "*")
-    title.gsub!(/&qm;/, "?")
-    title.gsub!(/&dq;/, "\"")
-    title.gsub!(/&lt;/, "<")
-    title.gsub!(/&gt;/, ">")
-    title.gsub!(/&po;/, "|")
+    # Use constant hash for replacements (performance optimization)
+    FILENAME_TO_TITLE_REPLACEMENTS.each { |encoded, char| title.gsub!(encoded, char) }
     return title
   end
 
   def self.title_to_filename(title)
     filename = title.clone
-    filename.gsub!(/\\/, "&bs;")
-    filename.gsub!(/\//, "&fs;")
-    filename.gsub!(/:/, "&cn;")
-    filename.gsub!(/\*/, "&as;")
-    filename.gsub!(/\?/, "&qm;")
-    filename.gsub!(/"/, "&dq;")
-    filename.gsub!(/</, "&lt;")
-    filename.gsub!(/>/, "&gt;")
-    filename.gsub!(/\|/, "&po;")
+    # Use constant hash for replacements (performance optimization)
+    TITLE_TO_FILENAME_REPLACEMENTS.each { |char, replacement| filename.gsub!(char, replacement) }
     return filename
   end
 

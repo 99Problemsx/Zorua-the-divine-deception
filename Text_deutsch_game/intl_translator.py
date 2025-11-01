@@ -20,6 +20,12 @@ class PokemonTranslator:
             "Pokédex": "Pokédex"
         }
         
+        # Pre-compiled regex patterns for pokemon names (performance optimization)
+        self._pokemon_name_patterns = {}
+        for eng, ger in self.pokemon_names.items():
+            pattern = re.compile(r'\b' + re.escape(eng) + r'\b')
+            self._pokemon_name_patterns[pattern] = ger
+        
         # Basis-Übersetzungen für häufige Begriffe
         self.translations = {
             # Grüße und höfliche Phrasen
@@ -476,6 +482,20 @@ class PokemonTranslator:
             r'\byou want\b': 'du willst',
             r'\bYou want\b': 'Du willst'
         }
+        
+        # Pre-compiled regex patterns for du-form (performance optimization)
+        self._du_form_patterns = {
+            re.compile(pattern): replacement
+            for pattern, replacement in self.du_form_rules.items()
+        }
+        
+        # Pre-sorted and pre-compiled translation patterns (performance optimization)
+        # Sort by length (longest first) to match longer phrases before shorter ones
+        self._sorted_translation_words = sorted(self.translations.keys(), key=len, reverse=True)
+        self._translation_patterns = {}
+        for word in self._sorted_translation_words:
+            pattern = re.compile(r'\b' + re.escape(word) + r'\b', flags=re.IGNORECASE)
+            self._translation_patterns[pattern] = self.translations[word]
 
     def should_skip_line(self, line: str) -> bool:
         """Prüft ob eine Zeile übersprungen werden soll"""
@@ -497,21 +517,17 @@ class PokemonTranslator:
             
         result = line
         
-        # 1. Pokémon-Namen ersetzen
-        for eng, ger in self.pokemon_names.items():
-            pattern = r'\b' + re.escape(eng) + r'\b'
-            result = re.sub(pattern, ger, result)
+        # 1. Pokémon-Namen ersetzen (using pre-compiled patterns with cached translations)
+        for pattern, ger in self._pokemon_name_patterns.items():
+            result = pattern.sub(ger, result)
         
-        # 2. Wort-für-Wort Übersetzungen (längste zuerst)
-        sorted_words = sorted(self.translations.keys(), key=len, reverse=True)
-        for eng_word in sorted_words:
-            ger_word = self.translations[eng_word]
-            pattern = r'\b' + re.escape(eng_word) + r'\b'
-            result = re.sub(pattern, ger_word, result, flags=re.IGNORECASE)
+        # 2. Wort-für-Wort Übersetzungen (using pre-compiled patterns with cached translations)
+        for pattern, ger_word in self._translation_patterns.items():
+            result = pattern.sub(ger_word, result)
         
-        # 3. Du-Form anwenden
-        for pattern, replacement in self.du_form_rules.items():
-            result = re.sub(pattern, replacement, result)
+        # 3. Du-Form anwenden (using pre-compiled patterns)
+        for pattern, replacement in self._du_form_patterns.items():
+            result = pattern.sub(replacement, result)
         
         return result
 

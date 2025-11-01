@@ -77,16 +77,19 @@ module PBSConverter
     
     # --- PHASE 6: Generate Ruby files ---
     pokemon_by_gen.each do |gen, species_list|
-      output = "#" + "=" * 79 + "\n"
-      output += "# Generation #{gen} Pokemon\n"
-      output += "#" + "=" * 79 + "\n\n"
+      # Use array for string building (performance optimization)
+      output_lines = []
+      output_lines << "#" + "=" * 79
+      output_lines << "# Generation #{gen} Pokemon"
+      output_lines << "#" + "=" * 79
+      output_lines << ""
       
       species_list.sort_by { |id, _| id.to_s }.each do |species_id, data|
-        output += generate_pokemon_class(species_id, data)
-        output += "\n"
+        output_lines << generate_pokemon_class(species_id, data)
+        output_lines << ""
       end
       
-      File.write("PBS/Data/Pokemon/gen_#{gen}.rb", output)
+      File.write("PBS/Data/Pokemon/gen_#{gen}.rb", output_lines.join("\n"))
       puts "  Generated gen_#{gen}.rb (#{species_list.size} species)"
     end
     
@@ -94,17 +97,19 @@ module PBSConverter
   end
   
   def self.generate_pokemon_class(species_id, data)
-    code = "Data::Species.register(:#{species_id}) do\n"
-    code += "  name \"#{data['Name']}\"\n" if data['Name']
-    code += "  type1 :#{data['Type1']}\n" if data['Type1']
-    code += "  type2 :#{data['Type2']}\n" if data['Type2']
+    # Use array for string building (performance optimization)
+    lines = []
+    lines << "Data::Species.register(:#{species_id}) do"
+    lines << "  name \"#{data['Name']}\"" if data['Name']
+    lines << "  type1 :#{data['Type1']}" if data['Type1']
+    lines << "  type2 :#{data['Type2']}" if data['Type2']
     
     if data['BaseStats']
       stats = data['BaseStats'].split(',').map(&:to_i)
-      code += "  base_stats(\n"
-      code += "    hp: #{stats[0]}, attack: #{stats[1]}, defense: #{stats[2]},\n"
-      code += "    special_attack: #{stats[3]}, special_defense: #{stats[4]}, speed: #{stats[5]}\n"
-      code += "  )\n"
+      lines << "  base_stats("
+      lines << "    hp: #{stats[0]}, attack: #{stats[1]}, defense: #{stats[2]},"
+      lines << "    special_attack: #{stats[3]}, special_defense: #{stats[4]}, speed: #{stats[5]}"
+      lines << "  )"
     end
     
     if data['EVs']
@@ -120,45 +125,45 @@ module PBSConverter
           evs_hash[stat_name] = amount if evs_hash.key?(stat_name)
           i += 2
         end
-        code += "  evs(\n"
-        code += "    hp: #{evs_hash[:hp]}, attack: #{evs_hash[:attack]}, defense: #{evs_hash[:defense]},\n"
-        code += "    special_attack: #{evs_hash[:special_attack]}, special_defense: #{evs_hash[:special_defense]}, speed: #{evs_hash[:speed]}\n"
-        code += "  )\n"
+        lines << "  evs("
+        lines << "    hp: #{evs_hash[:hp]}, attack: #{evs_hash[:attack]}, defense: #{evs_hash[:defense]},"
+        lines << "    special_attack: #{evs_hash[:special_attack]}, special_defense: #{evs_hash[:special_defense]}, speed: #{evs_hash[:speed]}"
+        lines << "  )"
       else
         # Old format
         evs = ev_parts.map(&:to_i)
-        code += "  evs(\n"
-        code += "    hp: #{evs[0]}, attack: #{evs[1]}, defense: #{evs[2]},\n"
-        code += "    special_attack: #{evs[3]}, special_defense: #{evs[4]}, speed: #{evs[5]}\n"
-        code += "  )\n"
+        lines << "  evs("
+        lines << "    hp: #{evs[0]}, attack: #{evs[1]}, defense: #{evs[2]},"
+        lines << "    special_attack: #{evs[3]}, special_defense: #{evs[4]}, speed: #{evs[5]}"
+        lines << "  )"
       end
     end
     
     if data['Abilities']
       abilities = data['Abilities'].split(',').map { |a| ":#{a.strip}" }
-      code += "  abilities #{abilities.join(', ')}\n"
+      lines << "  abilities #{abilities.join(', ')}"
     end
     
-    code += "  hidden_ability :#{data['HiddenAbility']}\n" if data['HiddenAbility']
-    code += "  growth_rate :#{data['GrowthRate']}\n" if data['GrowthRate']
-    code += "  base_exp #{data['BaseExp']}\n" if data['BaseExp']
-    code += "  catch_rate #{data['CatchRate']}\n" if data['CatchRate']
-    code += "  happiness #{data['Happiness']}\n" if data['Happiness']
+    lines << "  hidden_ability :#{data['HiddenAbility']}" if data['HiddenAbility']
+    lines << "  growth_rate :#{data['GrowthRate']}" if data['GrowthRate']
+    lines << "  base_exp #{data['BaseExp']}" if data['BaseExp']
+    lines << "  catch_rate #{data['CatchRate']}" if data['CatchRate']
+    lines << "  happiness #{data['Happiness']}" if data['Happiness']
     
     if data['EggGroups']
       egg_groups = data['EggGroups'].split(',').map { |eg| ":#{eg.strip}" }
-      code += "  egg_groups #{egg_groups.join(', ')}\n"
+      lines << "  egg_groups #{egg_groups.join(', ')}"
     end
     
-    code += "  hatch_steps #{data['HatchSteps']}\n" if data['HatchSteps']
-    code += "  height #{data['Height']}\n" if data['Height']
-    code += "  weight #{data['Weight']}\n" if data['Weight']
-    code += "  color :#{data['Color']}\n" if data['Color']
-    code += "  generation #{data['Generation']}\n" if data['Generation']
+    lines << "  hatch_steps #{data['HatchSteps']}" if data['HatchSteps']
+    lines << "  height #{data['Height']}" if data['Height']
+    lines << "  weight #{data['Weight']}" if data['Weight']
+    lines << "  color :#{data['Color']}" if data['Color']
+    lines << "  generation #{data['Generation']}" if data['Generation']
     
     if data['Pokedex']
       desc = data['Pokedex'].gsub('"', '\\"')
-      code += "  pokedex_entry \"#{desc}\"\n"
+      lines << "  pokedex_entry \"#{desc}\""
     end
     
     # Moves (level-up moves)
@@ -168,22 +173,22 @@ module PBSConverter
         moves_list << "    #{level.strip} => :#{move.strip}"
       end
       if moves_list.any?
-        code += "  moves(\n"
-        code += moves_list.join(",\n")
-        code += "\n  )\n"
+        lines << "  moves("
+        lines << moves_list.join(",\n")
+        lines << "  )"
       end
     end
     
     # Tutor Moves
     if data['TutorMoves']
       tutor_moves = data['TutorMoves'].split(',').map { |m| ":#{m.strip}" }
-      code += "  tutor_moves #{tutor_moves.join(', ')}\n"
+      lines << "  tutor_moves #{tutor_moves.join(', ')}"
     end
     
     # Egg Moves
     if data['EggMoves']
       egg_moves = data['EggMoves'].split(',').map { |m| ":#{m.strip}" }
-      code += "  egg_moves #{egg_moves.join(', ')}\n"
+      lines << "  egg_moves #{egg_moves.join(', ')}"
     end
     
     # Evolutions
@@ -197,26 +202,26 @@ module PBSConverter
         end
       end
       if evolutions.any?
-        code += "  evolutions(\n"
-        code += evolutions.join(",\n")
-        code += "\n  )\n"
+        lines << "  evolutions("
+        lines << evolutions.join(",\n")
+        lines << "  )"
       end
     end
     
     # Form-specific data
-    code += "  form_name \"#{data['FormName']}\"\n" if data['FormName']
-    code += "  mega_stone :#{data['MegaStone']}\n" if data['MegaStone']
-    code += "  gmax_move :#{data['GmaxMove']}\n" if data['GmaxMove']
+    lines << "  form_name \"#{data['FormName']}\"" if data['FormName']
+    lines << "  mega_stone :#{data['MegaStone']}" if data['MegaStone']
+    lines << "  gmax_move :#{data['GmaxMove']}" if data['GmaxMove']
     
     # Flags
     if data['Flags']
       flags = data['Flags'].split(',').map { |f| ":#{f.strip}" }
-      code += "  flags #{flags.join(', ')}\n"
+      lines << "  flags #{flags.join(', ')}"
     end
     
-    code += "end\n"
+    lines << "end"
     
-    code
+    lines.join("\n")
   end
   
   #=============================================================================
