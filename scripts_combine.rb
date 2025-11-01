@@ -9,6 +9,31 @@ class Numeric
 end
 
 module Scripts
+  # Character replacement mappings (performance optimization - defined as constants)
+  TITLE_TO_FILENAME_REPLACEMENTS = {
+    '\\' => "&bs;",
+    '/' => "&fs;",
+    ':' => "&cn;",
+    '*' => "&as;",
+    '?' => "&qm;",
+    '"' => "&dq;",
+    '<' => "&lt;",
+    '>' => "&gt;",
+    '|' => "&po;"
+  }.freeze
+  
+  FILENAME_TO_TITLE_REPLACEMENTS = {
+    "&bs;" => "\\",
+    "&fs;" => "/",
+    "&cn;" => ":",
+    "&as;" => "*",
+    "&qm;" => "?",
+    "&dq;" => "\"",
+    "&lt;" => "<",
+    "&gt;" => ">",
+    "&po;" => "|"
+  }.freeze
+  
   def self.dump(path = "Data/Scripts", rxdata = "Data/Scripts.rxdata")
     scripts = File.open(rxdata, 'rb') { |f| Marshal.load(f) }
     if scripts.length < 10
@@ -125,37 +150,15 @@ module Scripts
       title = title.strip
     end
     title = "unnamed" if !title || title.empty?
-    # Use a hash for more efficient replacements (performance optimization)
-    replacements = {
-      "&bs;" => "\\",
-      "&fs;" => "/",
-      "&cn;" => ":",
-      "&as;" => "*",
-      "&qm;" => "?",
-      "&dq;" => "\"",
-      "&lt;" => "<",
-      "&gt;" => ">",
-      "&po;" => "|"
-    }
-    replacements.each { |encoded, char| title.gsub!(encoded, char) }
+    # Use constant hash for replacements (performance optimization)
+    FILENAME_TO_TITLE_REPLACEMENTS.each { |encoded, char| title.gsub!(encoded, char) }
     return title
   end
 
   def self.title_to_filename(title)
     filename = title.clone
-    # Use a hash for more efficient replacements (performance optimization)
-    replacements = {
-      '\\' => "&bs;",
-      '/' => "&fs;",
-      ':' => "&cn;",
-      '*' => "&as;",
-      '?' => "&qm;",
-      '"' => "&dq;",
-      '<' => "&lt;",
-      '>' => "&gt;",
-      '|' => "&po;"
-    }
-    replacements.each { |char, replacement| filename.gsub!(char, replacement) }
+    # Use constant hash for replacements (performance optimization)
+    TITLE_TO_FILENAME_REPLACEMENTS.each { |char, replacement| filename.gsub!(char, replacement) }
     return filename
   end
 

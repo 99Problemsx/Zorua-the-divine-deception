@@ -21,10 +21,10 @@ class PokemonTranslator:
         }
         
         # Pre-compiled regex patterns for pokemon names (performance optimization)
-        self._pokemon_name_patterns = {
-            eng: re.compile(r'\b' + re.escape(eng) + r'\b')
-            for eng in self.pokemon_names.keys()
-        }
+        self._pokemon_name_patterns = {}
+        for eng, ger in self.pokemon_names.items():
+            pattern = re.compile(r'\b' + re.escape(eng) + r'\b')
+            self._pokemon_name_patterns[pattern] = ger
         
         # Basis-Übersetzungen für häufige Begriffe
         self.translations = {
@@ -492,10 +492,10 @@ class PokemonTranslator:
         # Pre-sorted and pre-compiled translation patterns (performance optimization)
         # Sort by length (longest first) to match longer phrases before shorter ones
         self._sorted_translation_words = sorted(self.translations.keys(), key=len, reverse=True)
-        self._translation_patterns = {
-            word: re.compile(r'\b' + re.escape(word) + r'\b', flags=re.IGNORECASE)
-            for word in self._sorted_translation_words
-        }
+        self._translation_patterns = {}
+        for word in self._sorted_translation_words:
+            pattern = re.compile(r'\b' + re.escape(word) + r'\b', flags=re.IGNORECASE)
+            self._translation_patterns[pattern] = self.translations[word]
 
     def should_skip_line(self, line: str) -> bool:
         """Prüft ob eine Zeile übersprungen werden soll"""
@@ -517,15 +517,12 @@ class PokemonTranslator:
             
         result = line
         
-        # 1. Pokémon-Namen ersetzen (using pre-compiled patterns)
-        for eng, pattern in self._pokemon_name_patterns.items():
-            ger = self.pokemon_names[eng]
+        # 1. Pokémon-Namen ersetzen (using pre-compiled patterns with cached translations)
+        for pattern, ger in self._pokemon_name_patterns.items():
             result = pattern.sub(ger, result)
         
-        # 2. Wort-für-Wort Übersetzungen (using pre-sorted and pre-compiled patterns)
-        for eng_word in self._sorted_translation_words:
-            ger_word = self.translations[eng_word]
-            pattern = self._translation_patterns[eng_word]
+        # 2. Wort-für-Wort Übersetzungen (using pre-compiled patterns with cached translations)
+        for pattern, ger_word in self._translation_patterns.items():
             result = pattern.sub(ger_word, result)
         
         # 3. Du-Form anwenden (using pre-compiled patterns)
