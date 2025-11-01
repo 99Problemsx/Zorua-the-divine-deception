@@ -148,7 +148,8 @@ class TrainerTypeLister
       else
         @sprite.setBitmap(nil)
       end
-    rescue
+    rescue => e
+      puts "Error loading trainer bitmap for #{@ids[index]}: #{e.message}" if $DEBUG
       @sprite.setBitmap(nil)
     end
     if @sprite.bitmap
@@ -170,7 +171,8 @@ class TrainerBattleLister
       else
         @sprite.setBitmap(nil)
       end
-    rescue
+    rescue => e
+      puts "Error loading trainer bitmap for #{@ids[index]}: #{e.message}" if $DEBUG
       @sprite.setBitmap(nil)
     end
     if @sprite.bitmap

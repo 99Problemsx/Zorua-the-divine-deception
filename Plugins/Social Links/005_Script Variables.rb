@@ -22,9 +22,22 @@ class Game_Event < Game_Character
         varname = $data_system.variables[id]
         return 0 if !varname
         if varname[/^s\:/]
-        return eval($~.post_match)
+          # Extract the expression after "s:" prefix
+          expression = $~.post_match.to_s.strip
+          # Safety check: only allow safe variable/constant access
+          if expression =~ /\A[\w\.\[\]]+\z/
+            begin
+              return eval(expression)
+            rescue => e
+              puts "Error evaluating script variable '#{varname}': #{e.message}" if $DEBUG
+              return 0
+            end
+          else
+            puts "Invalid script variable expression '#{varname}': contains unsafe characters" if $DEBUG
+            return 0
+          end
         else
-        return $game_variables[id]
+          return $game_variables[id]
         end
     end
 end

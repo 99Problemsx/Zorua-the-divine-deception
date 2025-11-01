@@ -50,7 +50,8 @@ module Events
         
         begin
           sprite.bitmap = Bitmap.new(bitmap_path)
-        rescue
+        rescue => e
+          puts "Error loading wind bitmap '#{bitmap_path}': #{e.message}" if $DEBUG
           sprite.bitmap = Bitmap.new(64, 64)
           sprite.bitmap.fill_rect(0, 0, 64, 64, Color.new(255, 255, 0, 128))
         end
