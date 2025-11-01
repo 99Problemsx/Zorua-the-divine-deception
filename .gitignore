@@ -21,6 +21,12 @@ Zorua_Release_Encrypted/
 errorlog.txt
 *.log
 
+# Visual Studio files
+.vs/
+*.vsidx
+*.vsuo
+*.wsuo
+
 # OS files
 .DS_Store
 Thumbs.db
