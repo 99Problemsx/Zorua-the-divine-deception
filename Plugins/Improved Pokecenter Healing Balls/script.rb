@@ -9,7 +9,7 @@ class MakeHealingBallGraphics
     @sprites={}
     @viewport=Viewport.new(0,0,Graphics.width,Graphics.height)
     @viewport.z=999999
-    for i in 0...balls.length
+    balls.each_index do |i|
       @sprites["ball#{i}"]=Sprite.new(@viewport)
       if pbResolveBitmap("Graphics/Pictures/Balls/ball_#{balls[i]}.png")
         @sprites["ball#{i}"].bitmap=Bitmap.new("Graphics/Pictures/Balls/ball_#{balls[i]}.png")
@@ -21,7 +21,7 @@ class MakeHealingBallGraphics
     bitmap1=Bitmap.new(256,192)
     bitmap2=Bitmap.new(256,192)
     rect1=Rect.new(0,0,256,192/4)
-    for i in 0...balls.length
+    balls.each_index do |i|
       case i
       when 0
         bitmap1.blt(36,50,@sprites["ball#{0}"].bitmap,rect1)

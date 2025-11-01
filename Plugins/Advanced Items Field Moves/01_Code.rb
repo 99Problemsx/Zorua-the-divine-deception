@@ -2491,13 +2491,14 @@ class Game_Event
   end
 
   def update_bomb_effect(bomb)
+    events = $game_map.events  # Cache events for performance
     $PokemonGlobal.bombs.each do |other_bomb_id, other_bomb|
-      if other_bomb_id != @event.id && $game_map.events.key?(other_bomb_id) &&
+      if other_bomb_id != @event.id && events.key?(other_bomb_id) &&
         (other_bomb[:x] - bomb[:x]).abs <= 1 && (other_bomb[:y] - bomb[:y] + (bomb[:lifted] ? -1 : 0 ) ).abs <= AIFM_Bomb[:explosion_radius]
         $PokemonGlobal.bombs[other_bomb_id][:time_left] = 0 if $PokemonGlobal.bombs[other_bomb_id][:time_left] != 0
       end
     end
-    $game_map.events.each do |event_id, event|
+    events.each do |event_id, event|
       if event.name[/bombable/i] &&
         (event.x - bomb[:x]).abs <= 1 && (event.y - bomb[:y] + (bomb[:lifted] ? -1 : 0 ) ).abs <= AIFM_Bomb[:explosion_radius]
         event.start if !event.instance_variable_get(:@explosion_triggered_hidden)
